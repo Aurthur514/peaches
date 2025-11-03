@@ -1,0 +1,17 @@
+{
+    "openai_api_key": "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",
+    "master_resume_path": "resumes/master_resume.txt",
+    "cover_letter_template_path": "templates/cover_letter_template.txt",
+    "output_directory": "tailored_applications",
+    "models": {
+        "requirements_extraction": "gpt-4",
+        "resume_tailoring": "gpt-4",
+        "cover_letter": "gpt-4"
+    },
+    "job_preferences": {
+        "required_keywords": ["software", "engineer", "developer", "python", "AI", "ML"],
+        "excluded_keywords": ["sales", "marketing"],
+        "minimum_match_score": 0.6,
+        "locations": ["remote", "USA", "Canada"]
+    }
+}

@@ -1,0 +1,20 @@
+function toJson(txt) {
+  if (!txt) return {};
+  txt = String(txt);
+  // remove ```json ... ``` or ``` ... ``` fences if present
+  txt = txt.replace(/```json([\s\S]*?)```/ig, (_, g) => g)
+           .replace(/```([\s\S]*?)```/g,    (_, g) => g);
+  // trim to outermost braces if any prose leaked
+  const start = txt.indexOf('{');
+  const end   = txt.lastIndexOf('}');
+  if (start !== -1 && end !== -1 && end > start) txt = txt.slice(start, end + 1);
+  return JSON.parse(txt);
+}
+
+const parts = $json.candidates?.[0]?.content?.parts || [];
+const raw = parts.find(p => p.text)?.text || '';
+try {
+  return [{ json: toJson(raw) }];
+} catch (e) {
+  return [{ json: { error: 'JSON_PARSE_FAIL', message: e.message, raw } }];
+}

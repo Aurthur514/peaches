@@ -1,0 +1,168 @@
+"""
+AI Crypto Trading Model
+-----------------------
+Fetches live data from Binance (free), trains an ML model (XGBoost),
+and outputs trading signals with position sizing.
+
+Dependencies:
+    pip install ccxt pandas numpy scikit-learn xgboost ta
+
+Author: Bharathan M & ChatGPT (GPT-5)
+Date: 2025-10-21
+"""
+
+import time
+import ccxt
+import pandas as pd
+import numpy as np
+from datetime import datetime
+import xgboost as xgb
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.metrics import roc_auc_score
+import ta  # technical analysis indicators
+
+# ================================================================
+# Step 1 — Data Fetching
+# ================================================================
+def get_live_ohlcv(symbol='BTC/USDT', timeframe='1m', limit=500, exchange_id='binance'):
+    """
+    Fetch OHLCV data from Binance (or any CCXT exchange)
+    """
+    exchange_class = getattr(ccxt, exchange_id)
+    exchange = exchange_class()
+    data = exchange.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
+    df = pd.DataFrame(data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+    return df
+
+
+# ================================================================
+# Step 2 — Feature Engineering
+# ================================================================
+def add_technical_features(df):
+    df = df.copy()
+    df['return'] = np.log(df['close'] / df['close'].shift(1))
+    df['rsi'] = ta.momentum.RSIIndicator(df['close'], window=14).rsi()
+    df['ema_fast'] = df['close'].ewm(span=12).mean()
+    df['ema_slow'] = df['close'].ewm(span=26).mean()
+    df['macd'] = df['ema_fast'] - df['ema_slow']
+    df['atr'] = ta.volatility.AverageTrueRange(df['high'], df['low'], df['close'], window=14).average_true_range()
+    df['vol_rolling'] = df['volume'].rolling(20).mean()
+    df.dropna(inplace=True)
+    return df
+
+
+# ================================================================
+# Step 3 — Label Creation
+# ================================================================
+def make_labels(df, horizon=5, thr=0.002):
+    """
+    Label +1 for upward movement, -1 for downward, 0 for neutral.
+    """
+    future = df['close'].shift(-horizon)
+    rtn = (future - df['close']) / df['close']
+    label = np.where(rtn > thr, 1, np.where(rtn < -thr, -1, 0))
+    df['label'] = label
+    df.dropna(inplace=True)
+    return df
+
+
+# ================================================================
+# Step 4 — Model Training
+# ================================================================
+def train_xgb(df, feature_cols, label_col='label'):
+    X = df[feature_cols]
+    y = df[label_col]
+    tscv = TimeSeriesSplit(n_splits=5)
+    models, scores = [], []
+    for train_idx, val_idx in tscv.split(X):
+        Xtr, Xv = X.iloc[train_idx], X.iloc[val_idx]
+        ytr, yv = y.iloc[train_idx], y.iloc[val_idx]
+        clf = xgb.XGBClassifier(
+            n_estimators=200,
+            max_depth=6,
+            learning_rate=0.05,
+            eval_metric='auc',
+            use_label_encoder=False
+        )
+        clf.fit(Xtr, ytr)
+        yprob = clf.predict_proba(Xv)[:, 1]
+        auc = roc_auc_score((yv == 1).astype(int), yprob)
+        models.append(clf)
+        scores.append(auc)
+    print(f"✅ Model trained | Mean AUC: {np.mean(scores):.4f}")
+    return models[-1]
+
+
+# ================================================================
+# Step 5 — Position Sizing
+# ================================================================
+def size_position_volatility(entry_price, stop_price, bankroll, max_risk_pct=0.01):
+    risk_amount = bankroll * max_risk_pct
+    position_size = risk_amount / abs(entry_price - stop_price)
+    return round(position_size, 5)
+
+
+# ================================================================
+# Step 6 — Decision Logic
+# ================================================================
+def decide_and_size(latest_row, model, feature_cols, bankroll=10000):
+    feat = latest_row[feature_cols].values.reshape(1, -1)
+    prob = model.predict_proba(feat)[0, 1]
+    pred = model.predict(feat)[0]
+
+    if pred == 1 and prob > 0.6:
+        entry = latest_row['close']
+        atr = latest_row['atr']
+        stop = entry - 3 * atr
+        size = size_position_volatility(entry, stop, bankroll)
+        return {
+            'time': latest_row['timestamp'],
+            'action': 'BUY',
+            'entry': entry,
+            'stop': stop,
+            'size': size,
+            'confidence': float(prob)
+        }
+    else:
+        return {'time': latest_row['timestamp'], 'action': 'HOLD', 'confidence': float(prob)}
+
+
+# ================================================================
+# Step 7 — Live Prediction Loop
+# ================================================================
+def live_trading_loop(symbol='BTC/USDT', timeframe='1m', bankroll=10000):
+    print("🚀 Starting AI Trading Model Live Loop")
+    df = get_live_ohlcv(symbol, timeframe)
+    df = add_technical_features(df)
+    df = make_labels(df)
+
+    FEATURES = ['rsi', 'macd', 'atr', 'return', 'ema_fast', 'ema_slow', 'vol_rolling']
+    model = train_xgb(df, FEATURES)
+
+    print(f"🔁 Entering live loop for {symbol} ({timeframe})...")
+
+    while True:
+        try:
+            live_df = get_live_ohlcv(symbol, timeframe, limit=100)
+            live_df = add_technical_features(live_df)
+            latest_row = live_df.iloc[-1]
+
+            decision = decide_and_size(latest_row, model, FEATURES, bankroll)
+            print(f"[{decision['time']}] Action: {decision['action']} | "
+                  f"Price: {latest_row['close']:.2f} | Confidence: {decision['confidence']:.2f}")
+
+            time.sleep(60)  # wait 1 minute for next candle
+        except KeyboardInterrupt:
+            print("🛑 Manual stop by user.")
+            break
+        except Exception as e:
+            print("⚠️ Error in live loop:", e)
+            time.sleep(10)
+
+
+# ================================================================
+# Entry Point
+# ================================================================
+if __name__ == "__main__":
+    live_trading_loop(symbol='BTC/USDT', timeframe='1m', bankroll=10000)

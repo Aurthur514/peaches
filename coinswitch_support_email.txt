@@ -1,0 +1,50 @@
+To: support@coinswitch.co
+Subject: Urgent: 401 -> 423 on POST /trade/api/v2/order — Signature & Account Lock Diagnostics
+
+Hello CoinSwitch Support team,
+
+We're seeing authentication and then locking behavior when attempting to place programmatic orders via the API (details and reproductions are attached below and in the attached file `coinswitch_support_packet.txt`). Summary of the issue:
+
+- Environment: Windows PowerShell, Python 3.x, virtualenv at D:\peaches\.venv
+- Script: D:\peaches\newbot.py (instrumented to print canonical messages and signatures)
+- API Key: (redacted here for security)
+
+Timeline & symptoms:
+1) Initially, POST /trade/api/v2/order returned 401 Unauthorized while GET endpoints (e.g., /trade/api/v2/user/portfolio) authenticated successfully. We iteratively tested canonicalization variants (JSON canonicalization, epoch placement, signature encoding) and produced diagnostic DUMP-POST packets for each attempt — these are included in `coinswitch_support_packet.txt`.
+
+2) After updating our signing logic to match examples (Method + unquote_plus(Path) + Epoch — excluding body from signed string) and confirming with dry-run dumps, we attempted one live test order. The live POST returned HTTP 423 Locked. No order was placed.
+
+Why we need your help:
+- We need you to check server logs for the timestamps and signature values included in the attached `coinswitch_support_packet.txt` (it contains exact canonical messages and hex/base64 signatures produced by our client). Specifically, please check the server's verification path for the last POST attempt and tell us whether:
+  * The server validated the signature and rejected due to account/resource lock, or
+  * The server considered the signature invalid and returned 423 for some other reason.
+
+Included attachments & reproductions:
+- coinswitch_support_packet.txt — full diagnostic packet with multiple DUMP-POST entries, canonical messages, epochs, and signatures. The packet includes:
+  * Dry-run canonical messages and signatures (hex + base64)
+  * Live run result (423 Locked) and the command used to initiate the run
+
+Requested server actions:
+1) Please search logs for the following epoch/signature pairs (and nearby timestamps): they are present in the attached packet. If you need additional copies, we can produce them without sharing the secret key.
+2) Confirm whether the server expects the request body to be included in the signed message for POST/DELETE, or whether the expected signing string is always Method + unquote_plus(Path) + Epoch.
+3) Confirm why the live request returned 423 Locked (account lock, KYC, maintenance, rate-limiting, or other reasons).
+
+Security note:
+- We have not included the SECRET_KEY in any of our diagnostic postings. If you need a re-run with the secret, we can produce signatures locally and share only the produced signatures and canonical messages (not the secret).
+
+We appreciate a prompt response as this is blocking our ability to place programmatic orders.
+
+Best regards,
+[Your Name]
+D:\peaches\coinswitch_support_packet.txt (attached)
+
+
+--- Exact signatures & epochs (extracted from attached packet) ---
+1) dry-run (2025-10-20):
+  Signature (hex): f89cb6d5e47a1086788b79b5e5cb014303fc080481f9971b954a7df984009dbdd41966541c6a4e779634237cfd6e9176b1da8698f5326369335bbe2446035a03
+  Signature (base64): +Jy21eR6EIZ4i3m15csBQwP8CASB+ZcblUp9+YQAnb3UGWZUHGpOd5Y0I3z9bpF2sdqGmPUyY2kzW74kRgNaAw==
+  Epoch (header): 1760960314495
+
+2) live attempt (2025-10-21):
+  Note: live POST returned HTTP 423 Locked (no order created). Please check server logs for the moment of the request.
+

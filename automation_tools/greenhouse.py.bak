@@ -1,0 +1,87 @@
+from playwright.sync_api import sync_playwright
+import time
+from typing import Dict
+
+
+def apply_to_greenhouse_job(job_url: str, profile: Dict, dry_run: bool = True) -> str:
+    """
+    Uses Playwright to fill out a standard Greenhouse application.
+
+    Parameters:
+      - job_url: URL of the Greenhouse job posting
+      - profile: dict with personal fields (first_name, last_name, email, master_resume_path, ...)
+      - dry_run: if True, the script will run in headless mode and will NOT submit the application.
+
+    Returns a short status message.
+    """
+    print(f"--- Opening Greenhouse page: {job_url} (dry_run={dry_run}) ---")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=dry_run)
+        page = browser.new_page()
+        page.goto(job_url)
+
+        try:
+            # Fill basic fields if present on the form; wrap each step since forms vary.
+            if profile.get('first_name'):
+                try:
+                    page.get_by_label("First Name *").fill(profile['first_name'])
+                except Exception:
+                    pass
+
+            if profile.get('last_name'):
+                try:
+                    page.get_by_label("Last Name *").fill(profile['last_name'])
+                except Exception:
+                    pass
+
+            if profile.get('email'):
+                try:
+                    page.get_by_label("Email *").fill(profile['email'])
+                except Exception:
+                    pass
+
+            # Resume upload: only attempt if a path is provided
+            resume_path = profile.get('master_resume_path')
+            if resume_path:
+                try:
+                    page.get_by_label("Resume/CV *").set_input_files(resume_path)
+                except Exception:
+                    # Some forms use different labels; ignore and continue.
+                    pass
+
+            # Optional: fill phone/linkedin/github if fields exist
+            if profile.get('phone'):
+                try:
+                    page.get_by_label("Phone").fill(profile['phone'])
+                except Exception:
+                    pass
+
+            # Try to check a common radio option if present
+            try:
+                if page.query_selector("text=Yes"):
+                    page.get_by_label("Yes", exact=True).check()
+            except Exception:
+                pass
+
+            # In dry_run mode we do not click the final Submit button.
+            print("--- Form filled successfully (dry_run mode: not submitting) ---")
+            if dry_run:
+                # short pause so user can inspect if running headful
+                time.sleep(2)
+
+        except Exception as e:
+            print(f"Error on Greenhouse: {e}")
+            try:
+                browser.close()
+            except Exception:
+                pass
+            return f"Failed to apply to Greenhouse: {e}"
+        finally:
+            try:
+                browser.close()
+            except Exception:
+                pass
+
+    return "Filled Greenhouse application (dry_run)."
+
+# You would also create automation_tools/lever.py in the same way

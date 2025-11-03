@@ -1,0 +1,54 @@
+[Your Name]
+[Your Address]
+[City, State ZIP]
+[Phone]
+[Email]
+
+SUMMARY
+-------
+[A brief summary of your professional background and career objectives]
+
+SKILLS
+------
+Programming Languages: [List your programming languages]
+Frameworks & Tools: [List frameworks and tools]
+Cloud & DevOps: [List cloud platforms and DevOps tools]
+Soft Skills: [List relevant soft skills]
+
+EXPERIENCE
+----------
+[Company Name], [Location]
+[Job Title] | [Start Date] - [End Date]
+• [Achievement or responsibility]
+• [Achievement or responsibility]
+• [Achievement or responsibility]
+
+[Company Name], [Location]
+[Job Title] | [Start Date] - [End Date]
+• [Achievement or responsibility]
+• [Achievement or responsibility]
+• [Achievement or responsibility]
+
+EDUCATION
+---------
+[University Name], [Location]
+[Degree] in [Field] | [Graduation Date]
+• [Relevant coursework or achievements]
+• [GPA if notable]
+
+PROJECTS
+--------
+[Project Name]
+• [Description of project and your role]
+• [Technologies used]
+• [Impact or results]
+
+[Project Name]
+• [Description of project and your role]
+• [Technologies used]
+• [Impact or results]
+
+CERTIFICATIONS
+-------------
+• [Certification Name] | [Issuing Organization] | [Date]
+• [Certification Name] | [Issuing Organization] | [Date]

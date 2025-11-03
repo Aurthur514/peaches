@@ -1,0 +1,5 @@
+requests>=2.0.0
+cryptography>=3.0
+langchain
+langchain-openai
+playwright

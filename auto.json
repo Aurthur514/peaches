@@ -1,0 +1,311 @@
+{
+  "name": "Auto Video Factory (No-Touch)",
+  "nodes": [
+    {
+      "parameters": { "triggerTimes": { "item": [ { "hour": 9, "minute": 0, "weekday": "MO,TU,WE,TH,FR,SA,SU" } ] } },
+      "name": "Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [ -1200, -100 ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "sheetId": "YOUR_SHEET_ID",
+        "range": "Topics!A2:C",
+        "options": { "valueRenderMode": "FORMATTED_VALUE" }
+      },
+      "name": "Read Topics",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "credentials": { "googleApi": "Google Sheets OAuth2" },
+      "position": [ -1000, -100 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const rows = items.map(i => i.json);\n// Find first row with Status != Done\nconst row = rows.find(r => (r.Status||'').toLowerCase() !== 'done');\nif (!row) throw new Error('No pending topics.');\nreturn [{ json: { topic: row.Topic, rowIndex: row._row as any } }];"
+      },
+      "name": "Pick Next Topic",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ -820, -100 ]
+    },
+    {
+      "parameters": {
+        "operation": "chat",
+        "model": "gpt-4o-mini",
+        "messages": [
+          {
+            "text": "You are a video scriptwriter. Write a 60–90 second YouTube Short script about: {{$json.topic}}\nReturn JSON with keys: title, description, scenes[]. Each scene has: text (1–2 sentences), keyword (visual search term), onScreen (caption text <=10 words).\nTone: engaging, factual. Indian audience. Add CTA at end.",
+            "type": "system"
+          }
+        ],
+        "temperature": 0.7,
+        "jsonOutput": true
+      },
+      "name": "OpenAI – Script & Scenes",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 3,
+      "credentials": { "openAiApi": "OpenAI API Key" },
+      "position": [ -640, -100 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const o = items[0].json;\n// Normalize\nreturn [{ json: { title: o.title, description: o.description, scenes: o.scenes } }];"
+      },
+      "name": "Normalize JSON",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ -460, -100 ]
+    },
+    {
+      "parameters": {
+        "operation": "synthesize",
+        "text": "={{ $json.scenes.map(s=>s.text).join(' ') }}",
+        "voice": "en-IN-Wavenet-D",
+        "language": "en-IN",
+        "audioEncoding": "MP3"
+      },
+      "name": "Google TTS – Voiceover",
+      "type": "n8n-nodes-base.googleCloudTextToSpeech",
+      "typeVersion": 1,
+      "credentials": { "googleCloudApi": "Google Cloud Service Account" },
+      "position": [ -280, -100 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const scenes = $json.scenes;\nreturn scenes.map((s,idx)=>({ json: { idx, keyword: s.keyword, onScreen: s.onScreen, text: s.text } }));"
+      },
+      "name": "Split Scenes",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ -460, 120 ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.pexels.com/videos/search",
+        "options": { "queryParametersUi": { "parameter": [ { "name": "query", "value": "={{$json.keyword}}" }, { "name": "per_page", "value": "1" }, { "name": "orientation", "value": "portrait" } ] } },
+        "authentication": "predefinedCredentialType",
+        "headerParametersUi": { "parameter": [ { "name": "Authorization", "value": "={{$credentials.httpHeaderAuth.apiKey}}"} ] }
+      },
+      "name": "Pexels Search (per scene)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "credentials": { "httpHeaderAuth": "Pexels API Key" },
+      "position": [ -280, 120 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const res = items[0].json;\nconst video = res.videos?.[0];\nif (!video) return [{json: { assetUrl: null, type: 'none' }}];\nconst file = (video.video_files||[]).find(f=>f.width<=1080 && f.link);\nreturn [{json: { assetUrl: file?.link, type: 'video' }}];"
+      },
+      "name": "Pick Clip",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ -100, 120 ]
+    },
+    {
+      "parameters": {
+        "url": "https://pixabay.com/api/",
+        "options": { "queryParametersUi": { "parameter": [ { "name": "key", "value": "={{$credentials.queryAuth.apiKey}}" }, { "name": "q", "value": "={{$json.keyword}}" }, { "name": "image_type", "value": "photo" }, { "name": "per_page", "value": "3" } ] } },
+        "sendQuery": true,
+        "authentication": "predefinedCredentialType"
+      },
+      "name": "Pixabay Fallback (image)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "credentials": { "queryAuth": "Pixabay API Key" },
+      "position": [ -100, 300 ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "functionCode": "const scenes = $items('Split Scenes', 0, 0).map(i => i.json);\nconst chosen = $items('Pick Clip', 0, 0).map(i => i.json);\nfor (let i=0;i<scenes.length;i++) scenes[i].assetUrl = chosen[i]?.assetUrl || null;\nreturn [{ json: { title: $json.title, description: $json.description, scenes } }];"
+      },
+      "name": "Merge Scene Assets",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ 80, 10 ]
+    },
+    {
+      "parameters": {
+        "url": "https://pixabay.com/api/",
+        "options": { "queryParametersUi": { "parameter": [ { "name": "key", "value": "={{$credentials.queryAuth.apiKey}}" }, { "name": "q", "value": "motivational background music" }, { "name": "category", "value": "music" }, { "name": "per_page", "value": "3" } ] } },
+        "sendQuery": true,
+        "authentication": "predefinedCredentialType"
+      },
+      "name": "Get Background Music",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "credentials": { "queryAuth": "Pixabay API Key" },
+      "position": [ -280, -280 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const music = items[0].json.hits?.[0]?.largeImageURL?.replace('photo', 'download');\nreturn [{ json: { musicUrl: music || null } }];"
+      },
+      "name": "Pick Music",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ -100, -280 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const scenes = $json.scenes;\nconst musicUrl = $items('Pick Music')[0].json.musicUrl;\n// Build Shotstack timeline with clips + captions overlay\nconst clips = [];\nlet start = 0;\nconst avgDur = Math.max(2.5, 60 / Math.max(1, scenes.length));\nfor (const s of scenes) {\n  clips.push({\n    asset: s.assetUrl ? { type: 'video', src: s.assetUrl, trim: 0 } : { type: 'title', text: s.onScreen || '…', style: 'minimal' },\n    start, length: avgDur, fit: 'cover', position: 'center'\n  });\n  clips.push({\n    asset: { type: 'html', html: `<div style=\\\"font-family:Inter,sans-serif;font-size:42px;font-weight:700;padding:24px;background:rgba(0,0,0,.35);border-radius:16px;\\\">${s.onScreen || ''}</div>` },\n    start: start + 0.2, length: Math.max(1.8, avgDur - 0.4), position: 'bottom', offset: { x: 0, y: -0.15 }\n  });\n  start += avgDur;\n}\nconst audio = [];\nif (musicUrl) audio.push({ asset: { type: 'audio', src: musicUrl }, start: 0, length: start, volume: 0.2 });\n// voiceover file from Google TTS node\naudio.push({ asset: { type: 'audio', src: '{{$binary.googletts.data}}' }, start: 0, length: start, volume: 1.0 });\nconst timeline = { background: '#000000', soundtrack: null, tracks: [ { clips } ] , fonts: [ { src: 'https://assets.shotstack.io/fonts/Inter-SemiBold.ttf', family: 'Inter' } ] };\nconst output = { format: 'mp4', size: { width: 1080, height: 1920 }, fps: 30, quality: 'high' };\nreturn [{ json: { timeline, output } }];"
+      },
+      "name": "Build Shotstack Payload",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ 260, 10 ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.shotstack.io/stage/render",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "jsonParameters": true,
+        "options": { "headerParametersUi": { "parameter": [ { "name": "x-api-key", "value": "={{$credentials.httpHeaderAuth.apiKey}}" } ] } },
+        "sendBody": true,
+        "bodyParametersJson": "={{ JSON.stringify({ timeline: $json.timeline, output: $json.output, callback: '' }) }}"
+      },
+      "name": "Shotstack Render",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "credentials": { "httpHeaderAuth": "Shotstack API Key" },
+      "position": [ 440, 10 ]
+    },
+    {
+      "parameters": {
+        "functionCode": "return [{ json: { renderId: $json.response?.id || $json.id } }];"
+      },
+      "name": "Get Render ID",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [ 620, 10 ]
+    },
+    {
+      "parameters": {
+        "url": "={{`https://api.shotstack.io/stage/render/` + $json.renderId}}",
+        "authentication": "predefinedCredentialType",
+        "options": { "headerParametersUi": { "parameter": [ { "name": "x-api-key", "value": "={{$credentials.httpHeaderAuth.apiKey}}" } ] } }
+      },
+      "name": "Poll Render Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "credentials": { "httpHeaderAuth": "Shotstack API Key" },
+      "position": [ 800, -80 ]
+    },
+    {
+      "parameters": { "conditions": { "string": [ { "value1": "={{$json.response.status}}", "operation": "equal", "value2": "done" } ] } },
+      "name": "IF Done?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [ 980, -80 ]
+    },
+    {
+      "parameters": { "interval": 30 },
+      "name": "Wait 30s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [ 980, 80 ]
+    },
+    {
+      "parameters": {},
+      "name": "Loop Back",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [ 800, 80 ]
+    },
+    {
+      "parameters": {
+        "operation": "uploadVideo",
+        "title": "={{$items('Normalize JSON')[0].json.title}}",
+        "description": "={{$items('Normalize JSON')[0].json.description}}",
+        "privacyStatus": "public",
+        "url": "={{$items('Poll Render Status')[0].json.response.url}}",
+        "tags": "={{[$items('Pick Next Topic')[0].json.topic,'shorts','education']}}"
+      },
+      "name": "YouTube Upload",
+      "type": "n8n-nodes-base.youtube",
+      "typeVersion": 2,
+      "credentials": { "youTubeOAuth2Api": "YouTube OAuth2" },
+      "position": [ 1160, -80 ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_CHAT_ID}}",
+        "text": "✅ Published: {{$items('Normalize JSON')[0].json.title}}\n🔗 {{$json.url}}"
+      },
+      "name": "Telegram Notify",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "credentials": { "telegramApi": "Telegram Bot" },
+      "position": [ 1360, -80 ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "YOUR_SHEET_ID",
+        "range": "Topics!A2:C",
+        "keyRow": 1,
+        "options": {},
+        "updateAllMatches": false,
+        "updateKey": "Row"
+      },
+      "name": "Mark as Done",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "credentials": { "googleApi": "Google Sheets OAuth2" },
+      "position": [ 1160, 100 ]
+    },
+    {
+      "parameters": {},
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [ -1200, 220 ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_CHAT_ID}}",
+        "text": "❌ Video pipeline failed:\n{{$json.error.message}}"
+      },
+      "name": "Notify Failure",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "credentials": { "telegramApi": "Telegram Bot" },
+      "position": [ -1000, 220 ]
+    }
+  ],
+  "connections": {
+    "Cron": { "main": [ [ { "node": "Read Topics", "type": "main", "index": 0 } ] ] },
+    "Read Topics": { "main": [ [ { "node": "Pick Next Topic", "type": "main", "index": 0 } ] ] },
+    "Pick Next Topic": { "main": [ [ { "node": "OpenAI – Script & Scenes", "type": "main", "index": 0 } ] ] },
+    "OpenAI – Script & Scenes": { "main": [ [ { "node": "Normalize JSON", "type": "main", "index": 0 }, { "node": "Split Scenes", "type": "main", "index": 0 } ] ] },
+    "Normalize JSON": { "main": [ [ { "node": "Google TTS – Voiceover", "type": "main", "index": 0 }, { "node": "Merge Scene Assets", "type": "main", "index": 0 } ] ] },
+    "Split Scenes": { "main": [ [ { "node": "Pexels Search (per scene)", "type": "main", "index": 0 } ] ] },
+    "Pexels Search (per scene)": { "main": [ [ { "node": "Pick Clip", "type": "main", "index": 0 } ] ] },
+    "Pick Clip": { "main": [ [ { "node": "Merge Scene Assets", "type": "main", "index": 0 } ] ] },
+    "Get Background Music": { "main": [ [ { "node": "Pick Music", "type": "main", "index": 0 } ] ] },
+    "Google TTS – Voiceover": { "main": [ [ { "node": "Build Shotstack Payload", "type": "main", "index": 0 } ] ] },
+    "Pick Music": { "main": [ [ { "node": "Build Shotstack Payload", "type": "main", "index": 0 } ] ] },
+    "Merge Scene Assets": { "main": [ [ { "node": "Build Shotstack Payload", "type": "main", "index": 0 } ] ] },
+    "Build Shotstack Payload": { "main": [ [ { "node": "Shotstack Render", "type": "main", "index": 0 } ] ] },
+    "Shotstack Render": { "main": [ [ { "node": "Get Render ID", "type": "main", "index": 0 } ] ] },
+    "Get Render ID": { "main": [ [ { "node": "Poll Render Status", "type": "main", "index": 0 } ] ] },
+    "Poll Render Status": {
+      "main": [
+        [ { "node": "IF Done?", "type": "main", "index": 0 } ]
+      ]
+    },
+    "IF Done?": {
+      "main": [
+        [ { "node": "YouTube Upload", "type": "main", "index": 0 } ],
+        [ { "node": "Wait 30s", "type": "main", "index": 0 } ]
+      ]
+    },
+    "Wait 30s": { "main": [ [ { "node": "Loop Back", "type": "main", "index": 0 } ] ] },
+    "Loop Back": { "main": [ [ { "node": "Poll Render Status", "type": "main", "index": 0 } ] ] },
+    "YouTube Upload": { "main": [ [ { "node": "Telegram Notify", "type": "main", "index": 0 }, { "node": "Mark as Done", "type": "main", "index": 0 } ] ] },
+    "Error Trigger": { "main": [ [ { "node": "Notify Failure", "type": "main", "index": 0 } ] ] }
+  }
+}

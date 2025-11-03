@@ -1,0 +1,32 @@
+HIGHLIGHTS:
+
+
+BHARATHAN M
+Software Engineer
+
+CONTACT
+Email: mbharathan2000@gmail.com
+Phone: +91 9566030215
+LinkedIn: linkedin.com/in/bharathan-m-baa54320b
+GitHub: github.com/Aurthur514
+
+SKILLS
+Languages: Python, Java, JavaScript, SQL
+Frameworks: Django, Flask, React
+Tools: Git, Docker, AWS
+AI/ML: TensorFlow, PyTorch, Scikit-learn
+
+EXPERIENCE
+Software Engineer | Current Company | 2023-Present
+- Developed and maintained microservices using Python and Flask
+- Implemented CI/CD pipelines with Jenkins and Docker
+- Optimized database queries resulting in 30% performance improvement
+
+Junior Developer | Previous Company | 2022-2023
+- Built RESTful APIs using Django and PostgreSQL
+- Created automated testing frameworks with pytest
+- Mentored junior team members
+
+EDUCATION
+B.Tech in Computer Science
+Anna University | 2019-2023

@@ -1,0 +1,178 @@
+CoinSwitch Support: Diagnostic packet for failing POST /trade/api/v2/order (401 Unauthorized)
+
+Short summary
+--------------
+We are seeing 401 Unauthorized responses for signed POST requests to /trade/api/v2/order while signed GET requests (for example /trade/api/v2/user/portfolio) authenticate successfully. The client is generating Ed25519 signatures over a canonical message composed of method + path + canonical-json-body (and optionally epoch) and sending:
+  - X-AUTH-APIKEY: <redacted>
+  - X-AUTH-SIGNATURE: <hex signature produced by Ed25519>
+  - X-AUTH-EPOCH: <ms epoch used to sign>
+
+We have instrumented the client to print the exact canonical message and produced signatures, and include reproduction steps and the dump below. Please review server-side logs for the timestamp/epoch and signature below and tell us what canonicalization or header formatting the server expects for POSTs.
+
+Environment
+-----------
+- Client: Windows PowerShell (user environment)
+- Project: D:\peaches
+- Script: D:\peaches\newbot.py
+- Python: Virtualenv at D:\peaches\.venv
+- Key material: API key and secret provided in the environment for diagnostics (we will NOT include the secret in this packet).
+
+What works
+----------
+- GET endpoints (example: GET /trade/api/v2/user/portfolio) authenticate successfully using the same API key/secret with the same signing function when the client canonicalizes an empty body correctly.
+
+What fails
+----------
+- POST /trade/api/v2/order returns 401 Unauthorized for the same client signing function (Ed25519, hex-encoded signature) when sending the canonicalized JSON body and headers.
+
+How we produce diagnostics (how you can reproduce locally)
+---------------------------------------------------------
+1) In PowerShell set the env vars (replace with your API key/secret):
+
+  $env:API_KEY = "<your_api_key_here>";
+  $env:SECRET_KEY = "<your_secret_key_here>";
+
+2) Run the instrumented script to produce a safe dump (DRY-RUN) of the POST payload, canonical message, signature, and headers:
+
+  & D:/peaches/.venv/Scripts/python.exe d:/peaches/newbot.py --dry-run --debug --dump-post --test-order --test-amount=1 --min-rows=50
+
+This prints a DUMP-POST block with the exact values we need (we include an example below). Please let us know if you prefer us to run this and share the dump directly; we will not share secret keys.
+
+Example diagnostic dump (replace with exact output from the command above)
+-----------------------------------------------------------------------
+[DUMP-POST] URL: https://coinswitch.co/trade/api/v2/order
+[DUMP-POST] Headers: {
+  "Content-Type": "application/json",
+  "X-AUTH-APIKEY": "f626de...fb54",    <-- API key (redacted here)
+  "X-AUTH-SIGNATURE": "d6581bd2a1f5...33e700",  <-- hex-encoded Ed25519 signature
+  "X-AUTH-EPOCH": "1760952690620"
+}
+[DUMP-POST] Payload: {
+  "exchange": "coinswitchx",
+  "price": 85.37,
+  "quantity": 0.058569,
+  "side": "buy",
+  "symbol": "USDT/INR",
+  "type": "limit"
+}
+[DUMP-POST] Canonical message used for signing:
+  POST/trade/api/v2/order{"exchange":"coinswitchx","price":85.37,"quantity":0.058569,"side":"buy","symbol":"USDT/INR","type":"limit"}
+[DUMP-POST] Signature (hex): d6581bd2a1f5...33e700
+[DUMP-POST] Epoch used in header: 1760952690620
+
+Observed server responses
+-------------------------
+- Multiple live attempts returned:
+  HTTP/1.1 401 Unauthorized
+- One variant (when we experimented with base64 encoding for the signature) produced a 500 server error; we reverted to hex per server docs and examples.
+
+Information we need from server-side logs
+----------------------------------------
+Please check server logs correlated to the above epoch/time (1760952690620) and signature. Specifically:
+- Did the server compute a different canonical message for POST bodies (e.g., include an empty-body placeholder, include or exclude epoch in the message, use different JSON separators, or expect a different path normalization)?
+- Which signature encoding (hex vs base64) does the server expect for POST requests? (GETs currently validate with hex.)
+- Is there an error in how the server parses the X-AUTH-EPOCH header (ms vs s precision)?
+- Any helpful server-side validation error messages that can be returned to the client instead of a 401 would be appreciated.
+
+Optional extra diagnostic steps we can provide
+--------------------------------------------
+If you'd like, we can produce a short table of canonical-message variants and their corresponding hex and base64 signatures (dry-run) so you can inspect which exact bytes are being verified on the server. Examples of variants we can emit on request:
+- Include or omit epoch from canonical message for POST
+- Use ms vs seconds precision for epoch
+- Include an explicit empty-body placeholder versus omitting when body is empty
+- JSON canonicalization variants: sorted keys vs original order, separators=(',',':') (no spaces) vs default
+- Signature encodings: hex vs base64
+
+Security note
+-------------
+- We will not include the secret key in this packet. If support needs to re-run verification against the exact secret, we will provide the signature outputs only (not the secret).
+- If any secret has been exposed during this process, please advise on rotating the API keys. We recommend rotating keys if you attach files or paste content in public channels.
+
+Next steps for the user
+-----------------------
+1) Run the command above to generate the exact DUMP-POST output and paste it into your support ticket (or attach this file). The dump contains the exact canonical message and signature we used that produced 401.
+2) Ask support to search server logs for the epoch (X-AUTH-EPOCH) and signature values and tell us what canonicalization/encoding they validate against.
+
+If you want me to: I can also (with your permission)
+- Run the dump command here and capture the exact dump into a file for you to attach (I will not share the SECRET_KEY anywhere)
+- Run a small automated sweep of canonicalization variants and produce a table of signatures for support
+
+
+-- End of diagnostic packet --
+
+
+-- Live diagnostic dump (appended from dry-run on 2025-10-20) --
+[DUMP-POST] URL: https://coinswitch.co/trade/api/v2/order
+[DUMP-POST] Headers: {
+  "Content-Type": "application/json",
+  "X-AUTH-APIKEY": "f626de1239b67a5985cb6887e562a76308e750d07b709b42a38c23e39601fb54",
+  "X-AUTH-SIGNATURE": "f89cb6d5e47a1086788b79b5e5cb014303fc080481f9971b954a7df984009dbdd41966541c6a4e779634237cfd6e9176b1da8698f5326369335bbe2446035a03",
+  "X-AUTH-EPOCH": "1760960314495"
+}
+[DUMP-POST] Payload: {"exchange":"coinswitchx","price":85.37,"quantity":0.011714,"side":"buy","symbol":"USDT/INR","type":"limit"}
+[DUMP-POST] Canonical message used for signing: POST/trade/api/v2/order{"exchange":"coinswitchx","price":85.37,"quantity":0.011714,"side":"buy","symbol":"USDT/INR","type":"limit"}1760960314495
+[DUMP-POST] Signature (hex): f89cb6d5e47a1086788b79b5e5cb014303fc080481f9971b954a7df984009dbdd41966541c6a4e779634237cfd6e9176b1da8698f5326369335bbe2446035a03
+[DUMP-POST] Signature (base64): +Jy21eR6EIZ4i3m15csBQwP8CASB+ZcblUp9+YQAnb3UGWZUHGpOd5Y0I3z9bpF2sdqGmPUyY2kzW74kRgNaAw==
+[DUMP-POST] Note: This dump was produced with --dry-run and did NOT send a real order. The secret key was used locally to compute the signature but is not included here.
+
+
+-- Live run (2025-10-21) --
+Command executed:
+  D:/peaches/.venv/Scripts/python.exe d:/peaches/newbot.py --test-order --test-amount=1 --min-rows=50 --yes
+
+Outcome:
+  The bot attempted a real POST to /trade/api/v2/order and received:
+    HTTP/1.1 423 Locked
+  Server response (client-side summary): "423 Client Error: Locked for url: https://coinswitch.co/trade/api/v2/order"
+
+Notes:
+  - This 423 indicates the server refused the request due to a locked resource or account restriction. No order was created.
+  - Prior troubleshooting cycles (earlier in this packet) showed 401 Unauthorized when different signature canonicalizations were attempted. We have since changed signing to exclude the body; the latest live POST produced 423.
+
+Requested action for support:
+  - Please check server logs for the above timestamp and the latest signature/epoch in this file and advise why the account or endpoint is locked for creating orders.
+  - Confirm whether the signing format (Method + unquote_plus(path) + epoch) is accepted for POST requests, or whether additional steps are required.
+
+
+-- Trial payload dry-run (2025-10-21 with trial order_id) --
+[DUMP-POST] URL: https://coinswitch.co/trade/api/v2/order
+[DUMP-POST] Headers: {
+  "Content-Type": "application/json",
+  "X-AUTH-APIKEY": "f626de1239b67a5985cb6887e562a76308e750d07b709b42a38c23e39601fb54",
+  "X-AUTH-SIGNATURE": "edf0e9babd74beecfde07c05e524dad639d96bb5af0759c5c99f2704b3f11943f5aa6468d280b23583da8becd5c14c9c59069eda3965a81c7f70c28c2d1f4b05",
+  "X-AUTH-EPOCH": "1761029565222"
+}
+[DUMP-POST] Payload: {"exchange":"coinswitchx","price":85.98,"quantity":0.011631,"side":"buy","symbol":"USDT/INR","type":"limit","order_id":"trial-1234"}
+[DUMP-POST] Canonical message used for signing: POST/trade/api/v2/order1761029565222
+[DUMP-POST] Signature (hex): edf0e9babd74beecfde07c05e524dad639d96bb5af0759c5c99f2704b3f11943f5aa6468d280b23583da8becd5c14c9c59069eda3965a81c7f70c28c2d1f4b05
+[DUMP-POST] Signature (base64): 7fDpur10vuz94HwF5STa1jnZa7WvB1nFyZ8nBLPxGUP1qmRo0oCyNYPai+zVwUycWQae2jllqBx/cMKMLR9LBQ==
+[DUMP-POST] Note: This was a dry-run (did NOT send a real order). It was used to test whether adding "order_id" changes server behavior.
+
+
+-- Dry-run with NEW KEYS (2025-10-21) --
+[DUMP-POST] URL: https://coinswitch.co/trade/api/v2/order
+[DUMP-POST] Headers: {
+  "Content-Type": "application/json",
+  "X-AUTH-APIKEY": "2510b7d179a4134bd995430551a6f9f33689a004fc8b026b9dfb389c7a6385b8",
+  "X-AUTH-SIGNATURE": "00ed7273216b6efcfe2dca965c749ae99f8c88b85a321724e7b9cdde60580e71d446a38ebb955163703bae5add0d57143b86710cd45519063032bdc35e5a8e0a",
+  "X-AUTH-EPOCH": "1761034941805"
+}
+[DUMP-POST] Payload: {"exchange":"coinswitchx","price":85.98,"quantity":0.011631,"side":"buy","symbol":"USDT/INR","type":"limit"}
+[DUMP-POST] Canonical message used for signing: POST/trade/api/v2/order1761034941805
+[DUMP-POST] Signature (hex): 00ed7273216b6efcfe2dca965c749ae99f8c88b85a321724e7b9cdde60580e71d446a38ebb955163703bae5add0d57143b86710cd45519063032bdc35e5a8e0a
+[DUMP-POST] Signature (base64): AO1ycyFrbvz+LcqWXHSa6Z+MiLhaMhck57nN3mBYDnHURqOOu5VRY3A7rlrdDVcUO4ZxDNRVGQYwMr3DXlqOCg==
+[DUMP-POST] Note: This was a dry-run using the NEW API key (did NOT send a real order). The SECRET_KEY was used locally to compute the signature but is not included here.
+
+
+-- Live run with NEW KEYS (2025-10-21) --
+Command executed:
+  D:/peaches/.venv/Scripts/python.exe d:/peaches/newbot.py --test-order --test-amount=1 --min-rows=50 --yes
+
+Outcome:
+  The bot attempted a real POST to /trade/api/v2/order and received:
+    HTTP/1.1 423 Locked
+  Client-side message: "423 Client Error: Locked for url: https://coinswitch.co/trade/api/v2/order"
+
+Notes:
+  - No order was created. The server returned 423 (Locked) when attempting to place the real order using the newly-provided keys.
+  - Please inspect server logs for the time of this request and the signatures included earlier in this packet.

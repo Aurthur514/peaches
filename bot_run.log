@@ -1,0 +1,9 @@
+2025-10-28 12:04:36,911 - INFO - [upgradebot.py:103] - Logging initialized. Saving to bot_run.log
+2025-10-28 12:04:36,912 - INFO - [upgradebot.py:424] - [START] ML Futures Bot v2.4 Initialized.
+2025-10-28 12:04:36,913 - INFO - [upgradebot.py:425] - TP: 5.0%%, SL: 2.0%% | DRY-RUN: True
+2025-10-28 12:04:40,420 - INFO - [upgradebot.py:428] - [INFO] Current FUTURES (USDT) Balance: $9.0367
+2025-10-28 12:04:40,421 - WARNING - [upgradebot.py:430] - [STOP] Futures balance is too low to trade. Exiting.
+2025-10-29 21:03:31,746 INFO Opening Greenhouse page: https://boards.greenhouse.io/techcorp/job/12345 (dry_run=False)
+2025-10-29 21:04:23,697 ERROR Failed to save screenshot after unknown submission state: Page.screenshot: Target page, context or browser has been closed
+2025-10-29 21:26:28,909 INFO Opening Greenhouse page: https://boards.greenhouse.io/github/jobs/1234 (dry_run=True)
+2025-10-29 21:29:43,011 INFO Dry-run completed for https://boards.greenhouse.io/github/jobs/1234
