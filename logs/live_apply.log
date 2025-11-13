@@ -1,3 +1,0 @@
-2025-10-29 20:56:56,464 [ERROR] Missing required profile fields for live run: ['first_name', 'last_name', 'email', 'master_resume_path']
-2025-10-29 20:57:46,414 [ERROR] Missing required profile fields for live run: ['first_name', 'last_name', 'email', 'master_resume_path']
-2025-10-29 20:58:28,833 [ERROR] Missing required profile fields for live run: ['first_name', 'last_name', 'email', 'master_resume_path']
