@@ -1,0 +1,63 @@
+Bharathan M
+Chennai • 9566030215 • bharathan1404@gmail.com • linkedin.com/in/bharathan-m-baa54320b
+
+Data Analyst | Product Analytics
+
+Data Analyst with experience leveraging SQL, Python, and data visualization to analyze user behavior and inform product strategy. Passionate about the creator economy and skilled in translating complex datasets into actionable insights that drive business growth and product enhancements.
+
+WORK EXPERIENCE
+
+Flextronics
+Data Analyst                                                                04/2024 - Present
+• Provided technical support and process improvements for manufacturing operations, enhancing system efficiency and stability.
+• Collaborate with cross-functional stakeholder teams to understand data requirements and deliver insights that drive data-informed decision-making.
+• Maintained data integrity and performed system troubleshooting to ensure real-time monitoring and accuracy of manufacturing process data.
+• Develop and maintain dashboards to monitor key metrics, providing clear visibility into operational performance for leadership.
+• Provided technical support and process improvements for manufacturing operations.
+• Collaborated with stakeholders to derive actionable insights and supported strategic decision-making based on data trends
+
+BUDDI AI                                                                    04/2022 - 07/2022
+Junior Data Analyst
+• Contributed to the design of data infrastructure; identified data issues and reporting gaps to improve system reliability.
+• Developed dashboards, visualizations, and reports to communicate analytical findings.
+• Contributed to the design of data infrastructure; identified data issues and reporting gaps.
+• Ensured compliance with company governance policies and proactively learned new tools and techniques.
+
+EDUCATION
+
+B.Tech IT
+Saveetha Engineering College • GPA: 7.5                                     06/2018 - 03/2022
+
+HSC
+Velammal.Mat.Hr.Sec • GPA: 71%                                              03/2017 - 04/2018
+
+CERTIFICATIONS
+
+SQL Basics & Intermediate - Hackerrank                                      07/2023
+Data Analyst - Edubridge                                                    11/2022 - 06/2023
+C Programming, C++, Python - Computer Science College                       03/2018 - 06/2018
+
+PROJECTS
+
+Product Analysis of YouTube Content Performance
+• Analyzed YouTube video data to extract insights on trending patterns, engagement metrics, and content performance.
+• Leveraged Python, Pandas, NumPy, Matplotlib, and Seaborn for data preprocessing, visualization, and trend analysis.
+• Conducted Exploratory Data Analysis (EDA) to identify key factors influencing video popularity, including views, likes, comments, and categories.
+• Applied machine learning algorithms to predict video performance and engagement levels.
+• Implemented sentiment analysis on video comments using Natural Language Processing (NLP) to evaluate audience sentiment.
+• Optimized data pipelines for faster data cleaning and transformation, improving processing speed by 15%.
+• Presented actionable insights through interactive dashboards in Power BI and Tableau, enabling data-driven decision-making.
+
+SKILLS
+
+TECHNICAL SKILLS:
+Languages: Python, SQL, Shell Scripting, BigQuery
+Data Analysis & Visualization: Pandas, NumPy, Matplotlib, Seaborn, Tableau, Power BI, Excel
+Databases: MySQL, PostgreSQL, Microsoft SQL Server, Snowflake
+Data Technologies & Concepts: Product Analytics, KPI Tracking, A/B Testing Concepts, EDA, ETL, Data Pipelines, DBT
+Cloud & Software Practices: AWS, Git, GitHub
+
+LANGUAGES:
+• Tamil
+• English
+• Japanese
