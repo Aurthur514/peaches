@@ -14,7 +14,21 @@ An intelligent, automated job application system that searches for jobs, tailors
 
 ## 🚀 Quick Start
 
-### 1. Install Dependencies
+### Automated Setup (Recommended)
+
+**Linux/Mac:**
+```bash
+./setup.sh
+```
+
+**Windows:**
+```cmd
+setup.bat
+```
+
+### Manual Setup
+
+**1. Install Dependencies**
 
 ```bash
 # Install Python packages
