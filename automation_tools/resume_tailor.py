@@ -13,6 +13,11 @@ from datetime import datetime
 from pathlib import Path
 import logging
 from typing import Dict, Optional, Tuple
+
+# Set up logging first
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 try:
     from huggingface_hub import InferenceClient
     _HF_IMPORT_ERROR = None
@@ -20,10 +25,6 @@ except Exception as _e:
     InferenceClient = None  # type: ignore
     _HF_IMPORT_ERROR = _e
     logger.warning(f"Hugging Face SDK not available: {_e}")
-
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Constants
 RESUME_DIR = Path("tailored_resumes")
@@ -97,14 +98,14 @@ Job Description:
         try:
             result = client.text_generation(prompt, max_new_tokens=256, temperature=0.1)
             text = _hf_text(result)
-        try:
-            requirements = json.loads(text)
-            logger.info(f"Extracted requirements: {json.dumps(requirements, indent=2)}")
-            return requirements
-        except json.JSONDecodeError:
-            logger.warning("HF output not valid JSON, falling back to simple parser")
-    except Exception as e:
-        logger.warning(f"HF extraction failed: {e}. Falling back to rule-based parsing.")
+            try:
+                requirements = json.loads(text)
+                logger.info(f"Extracted requirements: {json.dumps(requirements, indent=2)}")
+                return requirements
+            except json.JSONDecodeError:
+                logger.warning("HF output not valid JSON, falling back to simple parser")
+        except Exception as e:
+            logger.warning(f"HF extraction failed: {e}. Falling back to rule-based parsing.")
 
     # Fallback simple parser: look for bullet lines and keywords
     lines = [l.strip('- ').strip() for l in description.splitlines() if l.strip().startswith('-')]
@@ -156,13 +157,13 @@ Resume:
         try:
             result = client.text_generation(prompt, max_new_tokens=50, temperature=0)
             text = _hf_text(result)
-        try:
-            score = float(text)
-            return min(max(score, 0.0), 1.0)
-        except ValueError:
-            logger.warning("HF score parse failed, falling back to simple heuristic")
-    except Exception as e:
-        logger.warning(f"HF scoring failed: {e}. Using simple heuristic for scoring.")
+            try:
+                score = float(text)
+                return min(max(score, 0.0), 1.0)
+            except ValueError:
+                logger.warning("HF score parse failed, falling back to simple heuristic")
+        except Exception as e:
+            logger.warning(f"HF scoring failed: {e}. Using simple heuristic for scoring.")
 
     # Fallback scoring: fraction of required skills present in resume
     reqs = requirements.get("required_skills", []) if isinstance(requirements, dict) else []
@@ -232,15 +233,27 @@ Current Resume:
         try:
             result = client.text_generation(prompt, max_new_tokens=2000, temperature=0.2)
             text = _hf_text(result)
-        # Save tailored version
-        with open(tailored_path, 'w', encoding='utf-8') as f:
-            f.write(text)
+            # Save tailored version
+            with open(tailored_path, 'w', encoding='utf-8') as f:
+                f.write(text)
 
-        # Score the match
-        match_score = score_resume_match(text, reqs)
-    except Exception as e:
-        logger.warning(f"HF tailoring failed: {e}. Using rule-based fallback.")
-        # Simple fallback: emphasize required skills by adding a "Highlights" section
+            # Score the match
+            match_score = score_resume_match(text, reqs)
+        except Exception as e:
+            logger.warning(f"HF tailoring failed: {e}. Using rule-based fallback.")
+            # Simple fallback: emphasize required skills by adding a "Highlights" section
+            highlights = []
+            resume_lower = master_resume.lower()
+            for s in reqs.get("required_skills", []):
+                if s.lower() in resume_lower:
+                    highlights.append(s)
+            text = "HIGHLIGHTS:\n" + "\n".join([f"- {h}" for h in highlights]) + "\n\n" + master_resume
+            with open(tailored_path, 'w', encoding='utf-8') as f:
+                f.write(text)
+            match_score = score_resume_match(text, reqs)
+    else:
+        # No HF client available - use simple fallback
+        logger.info("HF client not available, using rule-based tailoring")
         highlights = []
         resume_lower = master_resume.lower()
         for s in reqs.get("required_skills", []):
@@ -293,11 +306,25 @@ Template:
         try:
             result = client.text_generation(prompt, max_new_tokens=512, temperature=0.3)
             text = _hf_text(result)
-    except Exception as e:
-        logger.warning(f"HF cover-letter generation failed: {e}. Using fallback template.")
-        # Simple fallback: insert a highlights section and then the template
+        except Exception as e:
+            logger.warning(f"HF cover-letter generation failed: {e}. Using fallback template.")
+            # Simple fallback: insert a highlights section and then the template
+            highlights = []
+            resume_snippet = ''
+            # Try to derive highlights from required skills
+            for s in (requirements.get("required_skills") if isinstance(requirements, dict) else []):
+                if isinstance(s, str) and s:
+                    highlights.append(f"- {s}")
+            if highlights:
+                text = "Dear Hiring Team,\n\n" + "I am excited to apply for the role of " + job_title + " at " + company + ".\n\n"
+                text += "Highlights relevant to this role:\n" + "\n".join(highlights) + "\n\n"
+                text += template
+            else:
+                text = template
+    else:
+        # No HF client available - use simple fallback
+        logger.info("HF client not available, using template-based cover letter")
         highlights = []
-        resume_snippet = ''
         # Try to derive highlights from required skills
         for s in (requirements.get("required_skills") if isinstance(requirements, dict) else []):
             if isinstance(s, str) and s:
