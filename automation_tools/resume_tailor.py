@@ -1,10 +1,12 @@
-'''Resume tailoring utilities using Hugging Face's inference API.
+'''Resume tailoring utilities using AI (Gemini or Hugging Face).
 
 This module provides tools to:
 1. Analyze job descriptions
 2. Extract key requirements and skills
 3. Tailor resumes and cover letters to match
 4. Save versioned, tailored documents
+
+Supports Google Gemini (preferred) and HuggingFace as fallback.
 '''
 import os
 import json
@@ -18,6 +20,17 @@ from typing import Dict, Optional, Tuple
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Try importing Google Gemini
+try:
+    import google.generativeai as genai
+    _GEMINI_AVAILABLE = True
+    logger.info("Google Gemini SDK available")
+except Exception as _e:
+    genai = None  # type: ignore
+    _GEMINI_AVAILABLE = False
+    logger.info(f"Google Gemini SDK not available: {_e}")
+
+# Try importing HuggingFace as fallback
 try:
     from huggingface_hub import InferenceClient
     _HF_IMPORT_ERROR = None
@@ -32,6 +45,35 @@ RESUME_DIR.mkdir(exist_ok=True)
 
 _hf_client = None
 _hf_client_checked = False
+_gemini_model = None
+_gemini_checked = False
+
+def get_gemini_model():
+    """Lazily initialize and return a Gemini model or None if unavailable."""
+    global _gemini_model, _gemini_checked
+    if _gemini_checked:
+        return _gemini_model
+    
+    _gemini_checked = True
+    if not _GEMINI_AVAILABLE:
+        logger.debug("Gemini not available")
+        return None
+    
+    try:
+        # Try to get API key from environment
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        if not api_key:
+            logger.info("No Gemini API key found in environment (GEMINI_API_KEY or GOOGLE_API_KEY)")
+            return None
+        
+        genai.configure(api_key=api_key)
+        _gemini_model = genai.GenerativeModel('gemini-pro')
+        logger.info("Google Gemini model initialized successfully")
+        return _gemini_model
+    except Exception as e:
+        logger.warning(f"Failed to initialize Gemini: {e}")
+        _gemini_model = None
+        return None
 
 def get_hf_client():
     """Lazily initialize and return a Hugging Face InferenceClient or None if unavailable.
@@ -81,7 +123,7 @@ def _hf_text(result) -> str:
         pass
     return str(result)
 def extract_job_requirements(description: str) -> Dict[str, list]:
-    '''Extract key requirements from a job description using Hugging Face's Llama-2.'''
+    '''Extract key requirements from a job description using AI (Gemini or HuggingFace).'''
     prompt = f"""Extract key job requirements from this job description into these categories:
 - required_skills: Technical skills marked as required/must-have
 - preferred_skills: Nice-to-have technical skills
@@ -93,6 +135,26 @@ Format your response as a JSON object with these exact keys and list values.
 Job Description:
 {description}"""
     
+    # Try Gemini first
+    gemini_model = get_gemini_model()
+    if gemini_model is not None:
+        try:
+            response = gemini_model.generate_content(prompt)
+            text = response.text
+            try:
+                # Try to extract JSON from response
+                import re
+                json_match = re.search(r'\{[\s\S]*\}', text)
+                if json_match:
+                    requirements = json.loads(json_match.group())
+                    logger.info(f"Gemini extracted requirements: {json.dumps(requirements, indent=2)}")
+                    return requirements
+            except json.JSONDecodeError:
+                logger.warning("Gemini output not valid JSON, trying HuggingFace")
+        except Exception as e:
+            logger.warning(f"Gemini extraction failed: {e}. Trying HuggingFace.")
+    
+    # Try HuggingFace as fallback
     client = get_hf_client()
     if client is not None:
         try:
@@ -100,7 +162,7 @@ Job Description:
             text = _hf_text(result)
             try:
                 requirements = json.loads(text)
-                logger.info(f"Extracted requirements: {json.dumps(requirements, indent=2)}")
+                logger.info(f"HF extracted requirements: {json.dumps(requirements, indent=2)}")
                 return requirements
             except json.JSONDecodeError:
                 logger.warning("HF output not valid JSON, falling back to simple parser")
@@ -133,7 +195,7 @@ Job Description:
     }
 
 def score_resume_match(resume_text: str, requirements: Dict[str, list]) -> float:
-    """Score how well a resume matches job requirements using Hugging Face's Llama-2."""
+    """Score how well a resume matches job requirements using AI (Gemini or HuggingFace)."""
     prompt = f"""Score how well this resume matches the job requirements from 0.0-1.0.
 Consider:
 - % of required skills present
@@ -152,6 +214,21 @@ Education: {", ".join(requirements["education"]) if isinstance(requirements["edu
 Resume:
 {resume_text}"""
 
+    # Try Gemini first
+    gemini_model = get_gemini_model()
+    if gemini_model is not None:
+        try:
+            response = gemini_model.generate_content(prompt)
+            text = response.text.strip()
+            try:
+                score = float(text)
+                return min(max(score, 0.0), 1.0)
+            except ValueError:
+                logger.warning("Gemini score parse failed, trying HuggingFace")
+        except Exception as e:
+            logger.warning(f"Gemini scoring failed: {e}. Trying HuggingFace.")
+
+    # Try HuggingFace as fallback
     client = get_hf_client()
     if client is not None:
         try:
@@ -228,6 +305,23 @@ Requirements: {json.dumps(reqs, indent=2)}
 Current Resume:
 {master_resume}"""
 
+    # Try Gemini first
+    gemini_model = get_gemini_model()
+    if gemini_model is not None:
+        try:
+            response = gemini_model.generate_content(prompt)
+            text = response.text
+            # Save tailored version
+            with open(tailored_path, 'w', encoding='utf-8') as f:
+                f.write(text)
+            # Score the match
+            match_score = score_resume_match(text, reqs)
+            logger.info(f"Gemini created tailored resume: {tailored_path} (match: {match_score:.2f})")
+            return str(tailored_path), match_score
+        except Exception as e:
+            logger.warning(f"Gemini tailoring failed: {e}. Trying HuggingFace.")
+
+    # Try HuggingFace as fallback
     client = get_hf_client()
     if client is not None:
         try:
@@ -239,30 +333,22 @@ Current Resume:
 
             # Score the match
             match_score = score_resume_match(text, reqs)
+            logger.info(f"HF created tailored resume: {tailored_path} (match: {match_score:.2f})")
+            return str(tailored_path), match_score
         except Exception as e:
             logger.warning(f"HF tailoring failed: {e}. Using rule-based fallback.")
-            # Simple fallback: emphasize required skills by adding a "Highlights" section
-            highlights = []
-            resume_lower = master_resume.lower()
-            for s in reqs.get("required_skills", []):
-                if s.lower() in resume_lower:
-                    highlights.append(s)
-            text = "HIGHLIGHTS:\n" + "\n".join([f"- {h}" for h in highlights]) + "\n\n" + master_resume
-            with open(tailored_path, 'w', encoding='utf-8') as f:
-                f.write(text)
-            match_score = score_resume_match(text, reqs)
-    else:
-        # No HF client available - use simple fallback
-        logger.info("HF client not available, using rule-based tailoring")
-        highlights = []
-        resume_lower = master_resume.lower()
-        for s in reqs.get("required_skills", []):
-            if s.lower() in resume_lower:
-                highlights.append(s)
-        text = "HIGHLIGHTS:\n" + "\n".join([f"- {h}" for h in highlights]) + "\n\n" + master_resume
-        with open(tailored_path, 'w', encoding='utf-8') as f:
-            f.write(text)
-        match_score = score_resume_match(text, reqs)
+    
+    # Final fallback: use simple rule-based tailoring
+    logger.info("Using rule-based tailoring")
+    highlights = []
+    resume_lower = master_resume.lower()
+    for s in reqs.get("required_skills", []):
+        if s.lower() in resume_lower:
+            highlights.append(s)
+    text = "HIGHLIGHTS:\n" + "\n".join([f"- {h}" for h in highlights]) + "\n\n" + master_resume
+    with open(tailored_path, 'w', encoding='utf-8') as f:
+        f.write(text)
+    match_score = score_resume_match(text, reqs)
     
     logger.info(f"Created tailored resume: {tailored_path} (match: {match_score:.2f})")
     return str(tailored_path), match_score
@@ -276,8 +362,8 @@ def tailor_cover_letter(
 ) -> str:
     """Create a tailored cover letter for a specific job.
     
-    Uses Hugging Face Inference when available, falls back to template-based 
-    generation if HF is unavailable or errors occur.
+    Uses Gemini or Hugging Face Inference when available, falls back to template-based 
+    generation if both are unavailable or errors occur.
     """
     if requirements is None:
         requirements = extract_job_requirements(job_description)
@@ -301,29 +387,34 @@ Template:
 {template}
 """
 
-    client = get_hf_client()
-    if client is not None:
+    # Try Gemini first
+    gemini_model = get_gemini_model()
+    if gemini_model is not None:
         try:
-            result = client.text_generation(prompt, max_new_tokens=512, temperature=0.3)
-            text = _hf_text(result)
+            response = gemini_model.generate_content(prompt)
+            text = response.text
+            logger.info("Gemini generated cover letter")
         except Exception as e:
-            logger.warning(f"HF cover-letter generation failed: {e}. Using fallback template.")
-            # Simple fallback: insert a highlights section and then the template
-            highlights = []
-            resume_snippet = ''
-            # Try to derive highlights from required skills
-            for s in (requirements.get("required_skills") if isinstance(requirements, dict) else []):
-                if isinstance(s, str) and s:
-                    highlights.append(f"- {s}")
-            if highlights:
-                text = "Dear Hiring Team,\n\n" + "I am excited to apply for the role of " + job_title + " at " + company + ".\n\n"
-                text += "Highlights relevant to this role:\n" + "\n".join(highlights) + "\n\n"
-                text += template
-            else:
-                text = template
+            logger.warning(f"Gemini cover-letter generation failed: {e}. Trying HuggingFace.")
+            text = None
     else:
-        # No HF client available - use simple fallback
-        logger.info("HF client not available, using template-based cover letter")
+        text = None
+    
+    # Try HuggingFace as fallback
+    if text is None:
+        client = get_hf_client()
+        if client is not None:
+            try:
+                result = client.text_generation(prompt, max_new_tokens=512, temperature=0.3)
+                text = _hf_text(result)
+                logger.info("HF generated cover letter")
+            except Exception as e:
+                logger.warning(f"HF cover-letter generation failed: {e}. Using fallback template.")
+                text = None
+    
+    # Final fallback: use template with highlights
+    if text is None:
+        logger.info("Using template-based cover letter")
         highlights = []
         # Try to derive highlights from required skills
         for s in (requirements.get("required_skills") if isinstance(requirements, dict) else []):
