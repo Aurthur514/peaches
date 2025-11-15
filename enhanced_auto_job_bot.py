@@ -470,8 +470,11 @@ class EnhancedAutoJobBot:
         try:
             from enhanced_job_scrapers_v2 import get_adapter
         except ImportError:
-            logger.error("Enhanced job scrapers not found. Using fallback.")
-            return {'error': 'Job scrapers not available'}
+            try:
+                from enhanced_job_scrapers import get_adapter
+            except ImportError:
+                logger.error("No job scrapers available. Please install job scraper modules.")
+                return {'error': 'Job scrapers not available', 'status': 'failed'}
         
         # Search across platforms
         for platform in platforms:

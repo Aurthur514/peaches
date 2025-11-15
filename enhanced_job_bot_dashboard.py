@@ -22,9 +22,12 @@ sys.path.append(str(Path(__file__).parent))
 try:
     from auto_job_bot import AutoJobBot, JobListing, UserProfile, JobMatcher
     from enhanced_job_scrapers import get_adapter
-    # Import enhanced system
-    from enhanced_auto_job_bot import EnhancedAutoJobBot, IntelligentJobMatcher
-    ENHANCED_SYSTEM_AVAILABLE = True
+    # Try to import enhanced system - fallback gracefully if not available
+    try:
+        from enhanced_auto_job_bot import EnhancedAutoJobBot, IntelligentJobMatcher
+        ENHANCED_SYSTEM_AVAILABLE = True
+    except ImportError:
+        ENHANCED_SYSTEM_AVAILABLE = False
 except ImportError as e:
     st.error(f"Import error: {e}. Please ensure all required modules are installed.")
     st.error("Make sure you're running from the correct directory with all Python files present.")
@@ -112,49 +115,105 @@ def load_config():
 async def enhanced_job_search(query, location, job_sites, max_results=20):
     """Enhanced job search across multiple platforms with intelligent matching"""
     
-    if not ENHANCED_SYSTEM_AVAILABLE:
-        st.error("❌ Enhanced system not available. Please check imports.")
-        return [], {}
-    
-    # Initialize enhanced bot
-    try:
-        bot = EnhancedAutoJobBot()
-        st.success(f"🤖 Enhanced Auto Job Bot initialized for {bot.profile.full_name}")
-        
-        # Show current settings
-        with st.expander("⚙️ Current Auto-Apply Settings"):
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.info(f"🎯 Min Match: {bot.profile.min_match_score}%")
-            with col2:
-                st.info(f"📊 Max Apps/Day: {bot.profile.max_applications_per_day}")
-            with col3:
-                auto_status = "🟢 ENABLED" if bot.profile.auto_apply_enabled else "🔴 DISABLED"
-                st.info(f"🤖 Auto-Apply: {auto_status}")
-        
-        # Perform intelligent search with auto-application
-        results = await bot.intelligent_job_search_and_apply(
-            query=query,
-            location=location,
-            platforms=job_sites,
-            max_results=max_results
-        )
-        
-        if results.get('status') == 'success':
-            return results['jobs'], {
-                'summary': results['summary'],
-                'auto_applications': results['auto_applications']
-            }
-        else:
-            st.error(f"❌ Search failed: {results.get('error', 'Unknown error')}")
-            return [], {}
+    # Try enhanced system first, fallback to basic if not available
+    if ENHANCED_SYSTEM_AVAILABLE:
+        try:
+            # Initialize enhanced bot
+            bot = EnhancedAutoJobBot()
+            st.success(f"🤖 Enhanced Auto Job Bot initialized for {bot.profile.full_name}")
             
-    except Exception as e:
-        st.error(f"❌ Enhanced job search failed: {e}")
-        import traceback
-        with st.expander("🔍 Technical Details"):
-            st.code(traceback.format_exc())
-        return [], {}
+            # Show current settings
+            with st.expander("⚙️ Current Auto-Apply Settings"):
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.info(f"🎯 Min Match: {bot.profile.min_match_score}%")
+                with col2:
+                    st.info(f"📊 Max Apps/Day: {bot.profile.max_applications_per_day}")
+                with col3:
+                    auto_status = "🟢 ENABLED" if bot.profile.auto_apply_enabled else "🔴 DISABLED"
+                    st.info(f"🤖 Auto-Apply: {auto_status}")
+            
+            # Perform intelligent search with auto-application
+            results = await bot.intelligent_job_search_and_apply(
+                query=query,
+                location=location,
+                platforms=job_sites,
+                max_results=max_results
+            )
+            
+            if results.get('status') == 'success':
+                return results['jobs'], {
+                    'summary': results['summary'],
+                    'auto_applications': results['auto_applications']
+                }
+            else:
+                st.error(f"❌ Enhanced search failed: {results.get('error', 'Unknown error')}")
+                return [], {}
+                
+        except Exception as e:
+            st.warning(f"⚠️ Enhanced system failed, falling back to basic search: {e}")
+            ENHANCED_SYSTEM_AVAILABLE = False
+    
+    # Fallback to basic search
+    st.info("🔄 Using basic job search system")
+    return await basic_job_search(query, location, job_sites, max_results)
+
+async def basic_job_search(query, location, job_sites, max_results=20):
+    """Basic job search fallback function"""
+    all_jobs = []
+    search_results = {}
+    
+    # Create progress tracking
+    progress_container = st.container()
+    with progress_container:
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+    
+    for i, site in enumerate(job_sites):
+        try:
+            status_text.text(f"🔍 Searching {site.title()}... ({i+1}/{len(job_sites)})")
+            progress_bar.progress((i + 0.5) / len(job_sites))
+            
+            # Load user profile for adapter
+            config = load_config()
+            if not config:
+                continue
+                
+            profile_config = config['user_profile']
+            user_profile = UserProfile(**profile_config)
+            
+            # Get adapter and search
+            adapter = get_adapter(site.lower(), user_profile)
+            jobs = await adapter.search_jobs(query, location, limit=max_results//len(job_sites))
+            
+            search_results[site] = {
+                'count': len(jobs),
+                'jobs': jobs,
+                'status': '✅ Success',
+                'error': None
+            }
+            
+            all_jobs.extend(jobs)
+            status_text.text(f"✅ {site.title()}: Found {len(jobs)} jobs")
+            
+        except Exception as e:
+            error_msg = str(e)
+            search_results[site] = {
+                'count': 0,
+                'jobs': [],
+                'status': f'❌ Error',
+                'error': error_msg
+            }
+            st.warning(f"⚠️ Error searching {site}: {error_msg[:100]}...")
+        
+        progress_bar.progress((i + 1) / len(job_sites))
+        time.sleep(0.5)  # Small delay to show progress
+    
+    status_text.text("🎉 Search completed!")
+    time.sleep(1)
+    progress_container.empty()
+    
+    return all_jobs, search_results
 
 def display_search_results_summary(search_results):
     """Display enhanced search results with auto-application summary"""
