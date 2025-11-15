@@ -146,11 +146,13 @@ class IntelligentJobMatcher:
         total_score += nice_score * (self.skill_weights['nice_to_have_keywords'] / 100)
         
         # 5. SOFT SKILLS (5% weight) - Minor bonus
-        soft_score = self._score_soft_skills(job_text)\n        total_score += soft_score * (self.skill_weights['soft_skills'] / 100)
+        soft_score = self._score_soft_skills(job_text)
+        total_score += soft_score * (self.skill_weights['soft_skills'] / 100)
         
         # 6. PENALTY for avoid keywords
-        if self._has_avoid_keywords(job_text):\n            total_score *= 0.3  # Heavy penalty for avoid keywords
-            logger.warning(f\"Job '{job.title}' contains avoid keywords - penalized\")\n        
+        if self._has_avoid_keywords(job_text):
+            total_score *= 0.3  # Heavy penalty for avoid keywords
+            logger.warning(f"Job '{job.title}' contains avoid keywords - penalized")
         final_score = min(total_score * 100, 100.0)  # Cap at 100%
         job.match_score = final_score
         
