@@ -19,19 +19,27 @@ import time
 # Add current directory to path for imports
 sys.path.append(str(Path(__file__).parent))
 
+# Initialize system availability flags
+ENHANCED_SYSTEM_AVAILABLE = False
+BASIC_SYSTEM_AVAILABLE = False
+
 try:
     from auto_job_bot import AutoJobBot, JobListing, UserProfile, JobMatcher
     from enhanced_job_scrapers import get_adapter
-    # Try to import enhanced system - fallback gracefully if not available
-    try:
-        from enhanced_auto_job_bot import EnhancedAutoJobBot, IntelligentJobMatcher
-        ENHANCED_SYSTEM_AVAILABLE = True
-    except ImportError:
-        ENHANCED_SYSTEM_AVAILABLE = False
+    BASIC_SYSTEM_AVAILABLE = True
 except ImportError as e:
-    st.error(f"Import error: {e}. Please ensure all required modules are installed.")
-    st.error("Make sure you're running from the correct directory with all Python files present.")
+    st.error(f"Basic system import error: {e}")
+
+try:
+    from enhanced_auto_job_bot import EnhancedAutoJobBot, IntelligentJobMatcher
+    ENHANCED_SYSTEM_AVAILABLE = True
+except ImportError:
     ENHANCED_SYSTEM_AVAILABLE = False
+
+if not BASIC_SYSTEM_AVAILABLE:
+    st.error("❌ Critical import error: Basic job bot system not available.")
+    st.error("Make sure you're running from the correct directory with all Python files present.")
+    st.stop()
 
 # Page configuration
 st.set_page_config(
@@ -152,11 +160,14 @@ async def enhanced_job_search(query, location, job_sites, max_results=20):
                 
         except Exception as e:
             st.warning(f"⚠️ Enhanced system failed, falling back to basic search: {e}")
-            ENHANCED_SYSTEM_AVAILABLE = False
     
-    # Fallback to basic search
-    st.info("🔄 Using basic job search system")
-    return await basic_job_search(query, location, job_sites, max_results)
+    # Fallback to basic search if enhanced not available or if basic system is available
+    if BASIC_SYSTEM_AVAILABLE:
+        st.info("🔄 Using basic job search system")
+        return await basic_job_search(query, location, job_sites, max_results)
+    else:
+        st.error("❌ No job search system available")
+        return [], {}
 
 async def basic_job_search(query, location, job_sites, max_results=20):
     """Basic job search fallback function"""
