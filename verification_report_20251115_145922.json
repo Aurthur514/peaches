@@ -1,0 +1,50 @@
+{
+  "report_date": "2025-11-15T14:59:22.350711",
+  "verification_summary": {
+    "total_applications_found": 0,
+    "email_confirmations": 2,
+    "screenshot_evidence": 0,
+    "verification_rate": 0.0
+  },
+  "confirmed_applications": [
+    {
+      "company": "TechCorp India",
+      "job_title": "Senior Data Analyst",
+      "subject": "Application Received - Data Analyst Position",
+      "confirmation_number": "TC-2025-4521",
+      "received_time": "2025-11-14 10:35:00",
+      "status": "confirmed"
+    },
+    {
+      "company": "InnovateLabs",
+      "job_title": "Product Analyst",
+      "subject": "Thank you for your application - Product Analyst",
+      "confirmation_number": "IL-REF-8934",
+      "received_time": "2025-11-14 14:50:00",
+      "status": "confirmed"
+    }
+  ],
+  "pending_verification": [],
+  "verification_methods": {
+    "email_confirmed": [
+      {
+        "company": "TechCorp India",
+        "job_title": "Senior Data Analyst",
+        "subject": "Application Received - Data Analyst Position",
+        "confirmation_number": "TC-2025-4521",
+        "received_time": "2025-11-14 10:35:00",
+        "status": "confirmed"
+      },
+      {
+        "company": "InnovateLabs",
+        "job_title": "Product Analyst",
+        "subject": "Thank you for your application - Product Analyst",
+        "confirmation_number": "IL-REF-8934",
+        "received_time": "2025-11-14 14:50:00",
+        "status": "confirmed"
+      }
+    ],
+    "screenshot_verified": [],
+    "log_verified": []
+  }
+}

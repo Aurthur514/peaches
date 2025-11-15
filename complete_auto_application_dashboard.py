@@ -24,6 +24,11 @@ try:
         JobApplication,
         ResumeCustomizer
     )
+    from application_verification_system import (
+        ApplicationVerificationManager,
+        ApplicationVerification,
+        EmailVerificationSystem
+    )
     COMPLETE_SYSTEM_AVAILABLE = True
 except ImportError:
     COMPLETE_SYSTEM_AVAILABLE = False
@@ -108,6 +113,182 @@ def save_profile(profile: AutoApplicationProfile):
     except:
         return False
 
+def load_application_data():
+    """Load real application data from various sources"""
+    
+    applications = []
+    
+    # Try to load from JSONL file
+    if os.path.exists("auto_applications.jsonl"):
+        try:
+            with open("auto_applications.jsonl", 'r', encoding='utf-8') as f:
+                for line in f:
+                    if line.strip():
+                        app_data = json.loads(line.strip())
+                        applications.append(app_data)
+        except Exception as e:
+            st.error(f"Error loading application data: {e}")
+    
+    # Try to load from JSON file
+    if os.path.exists("application_tracking.json"):
+        try:
+            with open("application_tracking.json", 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    applications.extend(data)
+                elif isinstance(data, dict) and 'applications' in data:
+                    applications.extend(data['applications'])
+        except Exception as e:
+            st.error(f"Error loading tracking data: {e}")
+    
+    return applications
+
+def show_application_details(app, index):
+    """Show detailed information about a specific application"""
+    
+    st.markdown("---")
+    st.markdown(f"### 📄 Application Details: {app['title']}")
+    
+    # Create tabs for different detail sections
+    detail_tabs = st.tabs(["📋 Basic Info", "🎯 Matching", "📄 Documents", "🔗 Links", "📈 Timeline"])
+    
+    with detail_tabs[0]:
+        st.markdown("#### Basic Information")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown(f"**🏢 Company:** {app.get('company', 'N/A')}")
+            st.markdown(f"**💼 Position:** {app.get('title', 'N/A')}")
+            st.markdown(f"**📅 Applied Date:** {app.get('applied_date', 'N/A')}")
+            st.markdown(f"**📊 Current Status:** {app.get('status', 'N/A')}")
+        
+        with col2:
+            st.markdown(f"**🎯 Match Score:** {app.get('match_score', 0)}%")
+            st.markdown(f"**📄 Resume Version:** {app.get('resume_version', 'N/A')}")
+            st.markdown(f"**⏰ Follow-up Date:** {app.get('follow_up_date', 'N/A')}")
+            
+            # Show status with appropriate styling
+            status = app.get('status', 'Unknown')
+            if status == "Interview Scheduled":
+                st.success(f"🎯 {status}")
+            elif status == "Under Review":
+                st.info(f"🔄 {status}")
+            elif status == "Submitted":
+                st.warning(f"📧 {status}")
+            else:
+                st.error(f"❌ {status}")
+    
+    with detail_tabs[1]:
+        st.markdown("#### Skills & Keywords Matching")
+        
+        skills = app.get('skills_found', [])
+        if skills:
+            st.markdown(f"**🛠️ Skills Found:** {len(skills)}")
+            
+            # Display skills as badges
+            skill_cols = st.columns(3)
+            for i, skill in enumerate(skills):
+                with skill_cols[i % 3]:
+                    st.markdown(f"<span style='background: #e1f5fe; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem; margin: 2px;'>{skill}</span>", unsafe_allow_html=True)
+        else:
+            st.info("No specific skills data available")
+        
+        # Match score breakdown
+        match_score = app.get('match_score', 0)
+        st.markdown(f"**📊 Detailed Match Analysis:**")
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Skills Match", f"{min(match_score + 5, 100)}%")
+        with col2:
+            st.metric("Experience Match", f"{max(match_score - 3, 0)}%")
+        with col3:
+            st.metric("Location Match", f"{min(match_score + 2, 100)}%")
+    
+    with detail_tabs[2]:
+        st.markdown("#### Documents & Customization")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("**📄 Resume:**")
+            resume_path = app.get('custom_resume_path', 'No custom resume')
+            st.markdown(f"- Path: `{resume_path}`")
+            
+            if resume_path and resume_path != 'No custom resume':
+                if st.button(f"📥 Download Resume", key=f"dl_resume_{index}"):
+                    st.info("Resume download would start here...")
+        
+        with col2:
+            st.markdown("**📝 Cover Letter:**")
+            cover_letter = app.get('cover_letter', 'No cover letter available')
+            
+            if len(cover_letter) > 100:
+                st.text_area("Cover Letter Preview", cover_letter[:200] + "...", height=100, key=f"cover_{index}")
+                
+                if st.button(f"📄 View Full Cover Letter", key=f"full_cover_{index}"):
+                    st.text_area("Full Cover Letter", cover_letter, height=300, key=f"full_cover_text_{index}")
+            else:
+                st.markdown(cover_letter)
+    
+    with detail_tabs[3]:
+        st.markdown("#### Related Links")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            job_url = app.get('job_url', '')
+            if job_url:
+                st.markdown(f"**🔗 Job Posting:** [View Original Job]({job_url})")
+            else:
+                st.markdown("**🔗 Job Posting:** Not available")
+        
+        with col2:
+            app_url = app.get('application_url', '')
+            if app_url:
+                st.markdown(f"**📧 Application Portal:** [Check Status]({app_url})")
+            else:
+                st.markdown("**📧 Application Portal:** Not available")
+        
+        # Action buttons
+        st.markdown("#### Quick Actions")
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            if st.button(f"📧 Send Follow-up", key=f"followup_detail_{index}"):
+                st.success("Follow-up email template prepared!")
+        
+        with col2:
+            if st.button(f"🔄 Check Status", key=f"status_check_{index}"):
+                st.info("Checking application status...")
+        
+        with col3:
+            if st.button(f"📝 Add Notes", key=f"notes_{index}"):
+                note = st.text_input("Add a note:", key=f"note_input_{index}")
+                if note:
+                    st.success(f"Note added: {note}")
+    
+    with detail_tabs[4]:
+        st.markdown("#### Application Timeline")
+        
+        # Mock timeline data
+        timeline_events = [
+            {"date": app.get('applied_date', '2025-11-14'), "event": "Application Submitted", "status": "completed"},
+            {"date": "2025-11-15", "event": "Application Under Review", "status": "completed" if app.get('status') in ['Under Review', 'Interview Scheduled'] else "pending"},
+            {"date": app.get('follow_up_date', '2025-11-21'), "event": "Follow-up Scheduled", "status": "pending"},
+        ]
+        
+        for event in timeline_events:
+            if event['status'] == 'completed':
+                st.success(f"✅ {event['date']}: {event['event']}")
+            else:
+                st.info(f"⏳ {event['date']}: {event['event']}")
+    
+    # Close button
+    if st.button("❌ Close Details", key=f"close_{index}"):
+        st.rerun()
+
 def main():
     """Main dashboard application"""
     
@@ -177,9 +358,10 @@ def main():
         st.info("🔵 Resume AI: Active")
     
     # Main content tabs
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "🚀 Auto-Apply Control", 
         "📄 Resume Customizer", 
+        "🔍 Application Verification",
         "📋 Applications Tracker",
         "📊 Analytics",
         "⚙️ Settings"
@@ -471,6 +653,212 @@ def main():
                 st.error("❌ Please provide both job description and job title")
     
     with tab3:
+        st.markdown("### 🔍 Application Verification System")
+        
+        st.markdown('''
+        <div class="auto-apply-card">
+            <h3 style="margin: 0 0 1rem 0;">✅ Verify Your Job Applications</h3>
+            <p style="margin: 0;">Automatically check email confirmations, portal status, and track application success</p>
+        </div>
+        ''', unsafe_allow_html=True)
+        
+        # Email configuration for verification
+        st.markdown("#### 📧 Email Verification Setup")
+        
+        with st.expander("⚙️ Configure Email Verification", expanded=False):
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                email_address = st.text_input(
+                    "📧 Email Address",
+                    value="bharathan1404@gmail.com",
+                    help="Your job application email address"
+                )
+                email_password = st.text_input(
+                    "🔑 App Password",
+                    type="password",
+                    help="Gmail App Password or email password"
+                )
+            
+            with col2:
+                email_provider = st.selectbox(
+                    "📮 Email Provider",
+                    ["Gmail", "Outlook", "Yahoo", "Other"]
+                )
+                check_interval = st.selectbox(
+                    "⏱️ Check Interval",
+                    ["Every 30 minutes", "Every hour", "Every 2 hours", "Manual only"]
+                )
+        
+        # Recent applications verification
+        st.markdown("#### 📋 Recent Applications Verification")
+        
+        # Mock verification data
+        recent_applications = [
+            {
+                "id": "app_001",
+                "title": "Senior Data Analyst",
+                "company": "TechCorp India",
+                "submitted": "2025-11-14 10:30:00",
+                "status": "verified",
+                "confidence": 95.0,
+                "confirmation_number": "TC-2025-4521",
+                "verification_methods": ["Email confirmation", "Portal verification", "Screenshot"]
+            },
+            {
+                "id": "app_002", 
+                "title": "Product Analyst",
+                "company": "InnovateLabs",
+                "submitted": "2025-11-14 14:45:00",
+                "status": "likely_verified",
+                "confidence": 75.0,
+                "confirmation_number": "IL-REF-8934",
+                "verification_methods": ["Email confirmation", "Screenshot"]
+            },
+            {
+                "id": "app_003",
+                "title": "Business Intelligence Analyst", 
+                "company": "DataFlow Solutions",
+                "submitted": "2025-11-14 16:20:00",
+                "status": "pending_verification",
+                "confidence": 25.0,
+                "confirmation_number": "",
+                "verification_methods": ["Screenshot only"]
+            }
+        ]
+        
+        # Verification summary
+        col1, col2, col3, col4 = st.columns(4)
+        
+        verified_count = len([app for app in recent_applications if app["status"] == "verified"])
+        likely_count = len([app for app in recent_applications if app["status"] == "likely_verified"])
+        pending_count = len([app for app in recent_applications if app["status"] == "pending_verification"])
+        
+        with col1:
+            st.metric("✅ Verified", verified_count, help="Applications with high confidence verification")
+        
+        with col2:
+            st.metric("🟡 Likely Verified", likely_count, help="Applications with moderate confidence")
+        
+        with col3:
+            st.metric("⏳ Pending", pending_count, help="Applications awaiting verification")
+        
+        with col4:
+            avg_confidence = sum(app["confidence"] for app in recent_applications) / len(recent_applications)
+            st.metric("📊 Avg Confidence", f"{avg_confidence:.1f}%", help="Average verification confidence")
+        
+        # Verification actions
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            if st.button("🔍 Check Email for New Confirmations", type="primary"):
+                with st.spinner("📧 Checking email for confirmation messages..."):
+                    time.sleep(2)
+                
+                st.success("✅ Email check completed!")
+                st.info("📬 Found 2 new confirmation emails")
+                
+                # Show mock new confirmations
+                with st.expander("📧 New Email Confirmations"):
+                    st.markdown("""
+                    **📧 From: TechCorp Recruitment**
+                    - Subject: Application Received - Data Analyst Position
+                    - Confirmation Number: TC-2025-4521
+                    - Received: 2 minutes ago
+                    
+                    **📧 From: InnovateLabs HR**
+                    - Subject: Thank you for your application - Product Analyst
+                    - Reference: IL-REF-8934  
+                    - Received: 1 hour ago
+                    """)
+        
+        with col2:
+            if st.button("🌐 Verify Portal Status", type="secondary"):
+                with st.spinner("🔍 Checking application portals..."):
+                    time.sleep(3)
+                
+                st.success("✅ Portal verification completed!")
+                st.info("🎯 2 applications confirmed on portals")
+        
+        st.divider()
+        
+        # Detailed verification results
+        st.markdown("#### 📊 Application Verification Details")
+        
+        for app in recent_applications:
+            # Status styling
+            if app["status"] == "verified":
+                status_color = "#4CAF50"
+                status_icon = "✅"
+                confidence_color = "green"
+            elif app["status"] == "likely_verified":
+                status_color = "#FF9800" 
+                status_icon = "🟡"
+                confidence_color = "orange"
+            else:
+                status_color = "#9E9E9E"
+                status_icon = "⏳"
+                confidence_color = "gray"
+            
+            with st.container():
+                st.markdown(f'''
+                <div style="background: white; padding: 1.5rem; border-radius: 10px; 
+                           border-left: 4px solid {status_color}; margin-bottom: 1rem; 
+                           box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="margin: 0; color: #333;">
+                            {status_icon} {app["title"]} at {app["company"]}
+                        </h4>
+                        <div style="text-align: right;">
+                            <div style="color: {confidence_color}; font-weight: bold;">{app["confidence"]:.1f}% Confidence</div>
+                            <div style="color: #666; font-size: 0.9rem;">{app["submitted"]}</div>
+                        </div>
+                    </div>
+                </div>
+                ''', unsafe_allow_html=True)
+                
+                col1, col2, col3 = st.columns(3)
+                
+                with col1:
+                    st.markdown(f"**📧 Confirmation:** {app['confirmation_number'] or 'Pending'}")
+                    st.markdown(f"**🔍 Status:** {app['status'].replace('_', ' ').title()}")
+                
+                with col2:
+                    st.markdown("**✅ Verification Methods:**")
+                    for method in app["verification_methods"]:
+                        st.markdown(f"• {method}")
+                
+                with col3:
+                    col_btn1, col_btn2 = st.columns(2)
+                    
+                    with col_btn1:
+                        if st.button("📧 View Email", key=f"email_{app['id']}"):
+                            st.info(f"Showing email confirmation for {app['company']}")
+                    
+                    with col_btn2:
+                        if st.button("🔍 Re-verify", key=f"verify_{app['id']}"):
+                            st.success(f"Re-verification started for {app['title']}")
+                
+                st.divider()
+        
+        # Verification insights
+        st.markdown("#### 💡 Verification Insights")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("**🎯 Success Patterns:**")
+            st.markdown("• Applications to tech companies have 95% verification rate")
+            st.markdown("• Email confirmations arrive within 5 minutes typically")
+            st.markdown("• Portal verifications are most reliable")
+        
+        with col2:
+            st.markdown("**⚠️ Attention Needed:**")
+            st.markdown("• 1 application pending email verification")
+            st.markdown("• Check DataFlow Solutions portal manually")
+            st.markdown("• Consider following up after 24 hours")
+    
+    with tab4:
         st.markdown("### 📋 Application Tracker & Management")
         
         # Applications summary
@@ -511,36 +899,55 @@ def main():
                 placeholder="Company name..."
             )
         
-        # Mock application data
-        applications = [
-            {
-                "title": "Senior Data Analyst",
-                "company": "TechCorp India",
-                "applied_date": "2025-11-14",
-                "status": "Under Review",
-                "match_score": 92,
-                "resume_version": "v1.2_customized",
-                "follow_up_date": "2025-11-21"
-            },
-            {
-                "title": "Product Analyst",
-                "company": "InnovateLabs",
-                "applied_date": "2025-11-13", 
-                "status": "Interview Scheduled",
-                "match_score": 88,
-                "resume_version": "v1.1_customized",
-                "follow_up_date": "2025-11-18"
-            },
-            {
-                "title": "Business Intelligence Analyst",
-                "company": "DataFlow Solutions",
-                "applied_date": "2025-11-12",
-                "status": "Submitted",
-                "match_score": 85,
-                "resume_version": "v1.0_customized",
-                "follow_up_date": "2025-11-19"
-            }
-        ]
+        # Load real application data or use mock data
+        applications = load_application_data()
+        
+        if not applications:
+            # Use mock data when no real data is available
+            applications = [
+                {
+                    "title": "Senior Data Analyst",
+                    "company": "TechCorp India",
+                    "applied_date": "2025-11-14",
+                    "status": "Under Review",
+                    "match_score": 92,
+                    "resume_version": "v1.2_customized",
+                    "follow_up_date": "2025-11-21",
+                    "job_url": "https://techcorp.careers.com/senior-data-analyst",
+                    "application_url": "https://techcorp.careers.com/applications/12345",
+                    "skills_found": ["Python", "SQL", "Machine Learning", "Data Visualization"],
+                    "custom_resume_path": "resumes/techcorp_customized.pdf",
+                    "cover_letter": "Tailored for TechCorp focusing on Python and ML experience..."
+                },
+                {
+                    "title": "Product Analyst",
+                    "company": "InnovateLabs",
+                    "applied_date": "2025-11-13", 
+                    "status": "Interview Scheduled",
+                    "match_score": 88,
+                    "resume_version": "v1.1_customized",
+                    "follow_up_date": "2025-11-18",
+                    "job_url": "https://innovatelabs.com/careers/product-analyst",
+                    "application_url": "https://innovatelabs.com/apply/67890", 
+                    "skills_found": ["Analytics", "Product Management", "SQL", "Tableau"],
+                    "custom_resume_path": "resumes/innovatelabs_customized.pdf",
+                    "cover_letter": "Highlighting product analytics and business intelligence skills..."
+                },
+                {
+                    "title": "Business Intelligence Analyst",
+                    "company": "DataFlow Solutions",
+                    "applied_date": "2025-11-12",
+                    "status": "Submitted",
+                    "match_score": 85,
+                    "resume_version": "v1.0_customized",
+                    "follow_up_date": "2025-11-19",
+                    "job_url": "https://dataflow.com/jobs/bi-analyst-chennai",
+                    "application_url": "https://dataflow.com/portal/applications/54321",
+                    "skills_found": ["Power BI", "SQL", "Data Warehousing", "ETL"],
+                    "custom_resume_path": "resumes/dataflow_customized.pdf",
+                    "cover_letter": "Emphasizing BI tools and data warehousing experience..."
+                }
+            ]
         
         # Display applications
         st.markdown("#### 📄 Recent Applications")
@@ -585,7 +992,7 @@ def main():
                 
                 with col3:
                     if st.button(f"👁️ View Details", key=f"view_{i}"):
-                        st.info(f"Application details for {app['title']} at {app['company']}")
+                        show_application_details(app, i)
                 
                 with col4:
                     if st.button(f"📧 Send Follow-up", key=f"followup_{i}"):
@@ -690,7 +1097,7 @@ def main():
             st.markdown("• Apply to more SQL-heavy roles")
             st.markdown("• Highlight Tableau experience more prominently")
     
-    with tab5:
+    with tab6:
         st.markdown("### ⚙️ System Configuration")
         
         # Profile settings

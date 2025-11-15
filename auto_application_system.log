@@ -1,0 +1,151 @@
+2025-11-15 15:21:43,752 - real_job_search_engine - WARNING - No Naukri job listings found
+2025-11-15 15:22:46,641 - real_job_search_engine - WARNING - Error extracting Indeed job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"h2 a"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7f01ba235
+	0x7ff7eff12650
+	0x7ff7efca16dd
+	0x7ff7efcfa27e
+	0x7ff7efcfa58c
+	0x7ff7efcecd7c
+	0x7ff7efcecc36
+	0x7ff7efd4baba
+	0x7ff7efceb0ed
+	0x7ff7efcebf63
+	0x7ff7f01e5d60
+	0x7ff7f01dfe8a
+	0x7ff7f0201005
+	0x7ff7eff2d73e
+	0x7ff7eff34e3f
+	0x7ff7eff1b7e4
+	0x7ff7eff1b99f
+	0x7ff7eff01908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-15 15:22:46,978 - real_job_search_engine - WARNING - Error extracting Indeed job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"h2 a"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7f01ba235
+	0x7ff7eff12650
+	0x7ff7efca16dd
+	0x7ff7efcfa27e
+	0x7ff7efcfa58c
+	0x7ff7efcecd7c
+	0x7ff7efcecc36
+	0x7ff7efd4baba
+	0x7ff7efceb0ed
+	0x7ff7efcebf63
+	0x7ff7f01e5d60
+	0x7ff7f01dfe8a
+	0x7ff7f0201005
+	0x7ff7eff2d73e
+	0x7ff7eff34e3f
+	0x7ff7eff1b7e4
+	0x7ff7eff1b99f
+	0x7ff7eff01908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-15 15:22:47,279 - real_job_search_engine - WARNING - Error extracting Indeed job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"h2 a"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7f01ba235
+	0x7ff7eff12650
+	0x7ff7efca16dd
+	0x7ff7efcfa27e
+	0x7ff7efcfa58c
+	0x7ff7efcecd7c
+	0x7ff7efcecc36
+	0x7ff7efd4baba
+	0x7ff7efceb0ed
+	0x7ff7efcebf63
+	0x7ff7f01e5d60
+	0x7ff7f01dfe8a
+	0x7ff7f0201005
+	0x7ff7eff2d73e
+	0x7ff7eff34e3f
+	0x7ff7eff1b7e4
+	0x7ff7eff1b99f
+	0x7ff7eff01908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-15 15:23:29,610 - real_job_search_engine - WARNING - Error extracting FreshersWorld job: Message: no such element: Unable to locate element: {"method":"css selector","selector":".job-title"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7f01ba235
+	0x7ff7eff12650
+	0x7ff7efca16dd
+	0x7ff7efcfa27e
+	0x7ff7efcfa58c
+	0x7ff7efcecd7c
+	0x7ff7efcecc36
+	0x7ff7efd4baba
+	0x7ff7efceb0ed
+	0x7ff7efcebf63
+	0x7ff7f01e5d60
+	0x7ff7f01dfe8a
+	0x7ff7f0201005
+	0x7ff7eff2d73e
+	0x7ff7eff34e3f
+	0x7ff7eff1b7e4
+	0x7ff7eff1b99f
+	0x7ff7eff01908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-15 15:23:30,394 - real_job_search_engine - WARNING - Error extracting FreshersWorld job: Message: no such element: Unable to locate element: {"method":"css selector","selector":".job-title"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7f01ba235
+	0x7ff7eff12650
+	0x7ff7efca16dd
+	0x7ff7efcfa27e
+	0x7ff7efcfa58c
+	0x7ff7efcecd7c
+	0x7ff7efcecc36
+	0x7ff7efd4baba
+	0x7ff7efceb0ed
+	0x7ff7efcebf63
+	0x7ff7f01e5d60
+	0x7ff7f01dfe8a
+	0x7ff7f0201005
+	0x7ff7eff2d73e
+	0x7ff7eff34e3f
+	0x7ff7eff1b7e4
+	0x7ff7eff1b99f
+	0x7ff7eff01908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-15 15:23:32,846 - real_job_search_engine - WARNING - Error extracting FreshersWorld job: Message: no such element: Unable to locate element: {"method":"css selector","selector":".job-title"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7f01ba235
+	0x7ff7eff12650
+	0x7ff7efca16dd
+	0x7ff7efcfa27e
+	0x7ff7efcfa58c
+	0x7ff7efcecd7c
+	0x7ff7efcecc36
+	0x7ff7efd4baba
+	0x7ff7efceb0ed
+	0x7ff7efcebf63
+	0x7ff7f01e5d60
+	0x7ff7f01dfe8a
+	0x7ff7f0201005
+	0x7ff7eff2d73e
+	0x7ff7eff34e3f
+	0x7ff7eff1b7e4
+	0x7ff7eff1b99f
+	0x7ff7eff01908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+

@@ -38,6 +38,13 @@ try:
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
 
+# Real job search engine
+try:
+    from real_job_search_engine import RealJobSearchEngine
+    REAL_JOB_SEARCH_AVAILABLE = True
+except ImportError:
+    REAL_JOB_SEARCH_AVAILABLE = False
+
 # AI and text processing
 try:
     import openai
@@ -598,40 +605,81 @@ class CompleteAutoJobApplicationSystem:
         return results
     
     async def _search_jobs(self, query: str, location: str, limit: int) -> List[Dict]:
-        """Search for jobs across multiple platforms"""
+        """Search for jobs across multiple platforms using real job search"""
         
-        # This would integrate with job search APIs/scrapers
-        # For now, return sample data
+        logger.info(f"🔍 Starting REAL job search for '{query}' in '{location}'")
+        
+        if REAL_JOB_SEARCH_AVAILABLE:
+            try:
+                # Use real job search engine
+                search_engine = RealJobSearchEngine()
+                
+                # Search across all platforms
+                jobs = await search_engine.search_all_platforms(
+                    query=query,
+                    location=location,
+                    limit_per_platform=max(3, limit // 3)
+                )
+                
+                # Close browser
+                search_engine.close_browser()
+                
+                if jobs:
+                    logger.info(f"✅ Found {len(jobs)} REAL jobs from job platforms")
+                    return jobs[:limit]  # Limit to requested number
+                else:
+                    logger.warning("No real jobs found, falling back to sample data")
+                    return self._get_fallback_sample_jobs(query, location, limit)
+                    
+            except Exception as e:
+                logger.error(f"Error in real job search: {e}")
+                logger.info("Falling back to sample data")
+                return self._get_fallback_sample_jobs(query, location, limit)
+        else:
+            logger.warning("Real job search not available, using sample data")
+            return self._get_fallback_sample_jobs(query, location, limit)
+    
+    def _get_fallback_sample_jobs(self, query: str, location: str, limit: int) -> List[Dict]:
+        """Fallback sample jobs when real search fails"""
         
         sample_jobs = [
             {
-                'title': 'Data Analyst',
+                'title': f'{query} - Senior Level',
                 'company': 'TechCorp India',
-                'location': 'Remote',
-                'url': 'https://example.com/job1',
-                'description': 'Looking for a Data Analyst with Python, SQL, and Tableau skills...',
-                'application_url': 'https://example.com/apply1'
+                'location': location,
+                'url': 'https://techcorp.careers/senior-data-analyst',
+                'description': f'Looking for a {query} with Python, SQL, and advanced analytics skills...',
+                'application_url': 'https://techcorp.careers/apply/senior-analyst',
+                'platform': 'Sample Data',
+                'salary': '8-12 LPA',
+                'experience': '3-5 years'
             },
             {
-                'title': 'Product Analyst',
+                'title': f'{query} - Mid Level',
                 'company': 'InnovateLabs',
-                'location': 'Bangalore',
-                'url': 'https://example.com/job2',
-                'description': 'Seeking Product Analyst with analytics experience, SQL, Python...',
-                'application_url': 'https://example.com/apply2'
+                'location': location,
+                'url': 'https://innovatelabs.com/careers/product-analyst',
+                'description': f'Seeking {query} with analytics experience, SQL, Python...',
+                'application_url': 'https://innovatelabs.com/apply/analyst',
+                'platform': 'Sample Data',
+                'salary': '6-10 LPA',
+                'experience': '2-4 years'
             },
             {
-                'title': 'Business Intelligence Analyst',
+                'title': f'{query} - Entry Level',
                 'company': 'DataFlow Solutions',
-                'location': 'Chennai',
-                'url': 'https://example.com/job3',
-                'description': 'BI Analyst role requiring Power BI, SQL, Excel expertise...',
-                'application_url': 'https://example.com/apply3'
+                'location': location,
+                'url': 'https://dataflow.com/jobs/bi-analyst',
+                'description': f'{query} role requiring analytical skills, Excel expertise...',
+                'application_url': 'https://dataflow.com/apply/bi-analyst',
+                'platform': 'Sample Data',
+                'salary': '4-7 LPA',
+                'experience': '0-2 years'
             }
         ]
         
-        logger.info(f"Mock job search returned {len(sample_jobs)} jobs")
-        return sample_jobs
+        logger.info(f"Using {len(sample_jobs)} fallback sample jobs")
+        return sample_jobs[:limit]
     
     async def _create_job_application(self, job_data: Dict) -> JobApplication:
         """Create JobApplication object with pre-filled data"""
