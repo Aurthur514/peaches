@@ -1,0 +1,50 @@
+# Production Requirements for Auto Job Bot Live Deployment
+# Optimized for cloud platforms (Render, Railway, Heroku)
+
+# Core Web Framework
+streamlit>=1.28.0
+plotly>=5.17.0
+
+# HTTP Client and Web Scraping
+aiohttp>=3.8.5
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+lxml>=4.9.3
+
+# Selenium WebDriver
+selenium>=4.15.0
+webdriver-manager>=4.0.1
+
+# Data Processing
+pandas>=2.1.1
+numpy>=1.24.3
+
+# Async Support
+asyncio-throttle>=1.0.2
+
+# Configuration and Utilities
+python-dotenv>=1.0.0
+pydantic>=2.4.0
+
+# Logging and Monitoring
+loguru>=0.7.2
+
+# Security
+cryptography>=41.0.7
+
+# Production WSGI Server (if needed)
+gunicorn>=21.2.0
+
+# Cloud Platform Compatibility
+psutil>=5.9.5
+
+# Optional: Database Support for Production
+# sqlite3 (built-in Python)
+# sqlalchemy>=2.0.23
+
+# Optional: Redis for Caching
+# redis>=5.0.1
+
+# Optional: Email Notifications
+# smtplib (built-in Python)
+# email-validator>=2.0.0

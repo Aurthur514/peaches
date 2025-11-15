@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: auto-job-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements_production.txt
+    startCommand: streamlit run enhanced_job_bot_dashboard.py --server.port $PORT --server.address 0.0.0.0 --server.headless true --server.runOnSave false --server.enableCORS false
+    envVars:
+      - key: PYTHONPATH
+        value: /opt/render/project/src
+      - key: ENVIRONMENT
+        value: production
+      - key: PORT
+        generateValue: true
+    autoDeploy: true
