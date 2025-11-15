@@ -163,9 +163,6 @@ class CSClient:
             # backoff before next attempt (only reached for retryable errors)
             if attempt < max_retries - 1:
                 time.sleep(retry_delay * (attempt + 1))
-                
-        # Add extra delay between API calls to prevent rate limiting
-        time.sleep(0.5)  # 500ms delay between requests
 
         raise RuntimeError(f"API request failed after {max_retries} attempts: {last_error}")
 
@@ -843,9 +840,9 @@ def run_once():
     scored: List[Tuple[str, float, pd.DataFrame]] = []
     for i, sym in enumerate(symbols):
         try:
-            # Increased delay to avoid rate limiting (every 5 symbols)
-            if i > 0 and i % 5 == 0:
-                time.sleep(2)  # Longer delay every 5 symbols
+            # Small delay to avoid rate limiting (every 10 symbols)
+            if i > 0 and i % 10 == 0:
+                time.sleep(1)
             
             # Attempt to fetch candles; if symbol is rejected, try common variants derived from instrument_info
             candles = try_fetch_candles_with_candidates(client, inst, sym, CFG.candles_interval_min)

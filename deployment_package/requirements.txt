@@ -6,4 +6,3 @@ urllib3>=2.0.0
 langchain
 langchain-openai
 playwright
-flask>=2.3.0

@@ -1,0 +1,2265 @@
+2025-11-14 19:37:48,393 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,415 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,436 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,676 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,699 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,723 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,760 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,793 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,816 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,839 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,865 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,891 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,914 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,935 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,954 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:48,975 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,001 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,025 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,048 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,070 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,092 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,136 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,181 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,206 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,235 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,277 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,305 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,332 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,355 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:37:49,377 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:38:09,663 - INFO - Found 0 jobs on Glassdoor
+2025-11-14 19:40:54,289 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,310 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,329 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,355 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,388 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,408 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,428 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,448 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,467 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,487 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,507 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,526 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,546 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,565 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,584 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,603 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,623 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,643 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,665 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,687 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,707 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,726 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,744 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,764 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,783 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,803 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,824 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,844 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,863 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:40:54,883 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:41:15,128 - INFO - Found 0 jobs on Glassdoor
+2025-11-14 19:43:40,904 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:40,944 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:40,982 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,020 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,061 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,100 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,140 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,174 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,211 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,248 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,290 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,331 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,372 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,410 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,446 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,480 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,515 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,553 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,590 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,624 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,658 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,693 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,733 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,769 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,803 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,838 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,873 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,938 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:41,973 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:43:42,006 - WARNING - Error extracting Glassdoor job: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[data-test='employer-name']"}
+  (Session info: chrome=142.0.7444.135); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff771f6a235
+	0x7ff771cc2650
+	0x7ff771a516dd
+	0x7ff771aaa27e
+	0x7ff771aaa58c
+	0x7ff771a9cd7c
+	0x7ff771a9cc36
+	0x7ff771afbaba
+	0x7ff771a9b0ed
+	0x7ff771a9bf63
+	0x7ff771f95d60
+	0x7ff771f8fe8a
+	0x7ff771fb1005
+	0x7ff771cdd73e
+	0x7ff771ce4e3f
+	0x7ff771ccb7e4
+	0x7ff771ccb99f
+	0x7ff771cb1908
+	0x7ffbcb51e8d7
+	0x7ffbcd2ec53c
+
+2025-11-14 19:44:02,340 - INFO - Found 0 jobs on Glassdoor
+2025-11-14 19:51:30,573 - INFO - Searching Indeed: https://in.indeed.com/jobs?q=Data+Analyst&l=Chennai&limit=3&start=0&sort=relevance
+2025-11-14 19:51:30,968 - WARNING - Indeed returned status 403
+2025-11-14 19:51:31,228 - WARNING - Indeed returned status 403
+2025-11-14 19:51:31,466 - WARNING - Indeed returned status 403
+2025-11-14 19:51:31,469 - INFO - Indeed search completed in 0.91s, found 0 jobs
+2025-11-14 19:51:31,472 - ERROR - LinkedIn search failed: JobListing.__init__() got an unexpected keyword argument 'source'
+2025-11-14 19:51:31,497 - INFO - Searching Indeed: https://in.indeed.com/jobs?q=Python+Developer&l=Remote&limit=5&start=0&sort=relevance
+2025-11-14 19:51:31,507 - ERROR - LinkedIn search failed: JobListing.__init__() got an unexpected keyword argument 'source'
+2025-11-14 19:51:31,774 - WARNING - Indeed returned status 403
+2025-11-14 19:51:32,068 - WARNING - Indeed returned status 403
+2025-11-14 19:51:32,499 - WARNING - Indeed returned status 403
+2025-11-14 19:51:32,500 - INFO - Indeed search completed in 1.03s, found 0 jobs

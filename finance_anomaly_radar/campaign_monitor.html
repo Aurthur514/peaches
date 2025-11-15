@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAR Beta Campaign Monitor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .status {
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .metric-label {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .subreddits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .subreddit-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .subreddit-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+        .subreddit-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .stat {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .activity-feed {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .activity-item {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .timestamp {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .link-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚨 Finance Anomaly Radar</h1>
+            <h2>Live Beta Campaign Monitor</h2>
+        </div>
+
+        <div class="status">
+            🔴 CAMPAIGN LIVE - Reddit Beta Recruitment Active
+        </div>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-value">81</div>
+                <div class="metric-label">Total Upvotes</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">18</div>
+                <div class="metric-label">Comments</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">12</div>
+                <div class="metric-label">Beta Signups</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">3.4%</div>
+                <div class="metric-label">Conversion Rate</div>
+            </div>
+        </div>
+
+        <h3>📊 Performance by Subreddit</h3>
+        
+        <div class="subreddits">
+            <div class="subreddit-card">
+                <div class="subreddit-title">r/investing</div>
+                <div class="subreddit-stats">
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">26</div>
+                        <div>Upvotes</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">6</div>
+                        <div>Comments</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">4</div>
+                        <div>Signups</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">920</div>
+                        <div>Views</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+                <div style="text-align: center; margin-top: 10px;">Engagement: 85/100</div>
+            </div>
+
+            <div class="subreddit-card">
+                <div class="subreddit-title">r/CryptoCurrency</div>
+                <div class="subreddit-stats">
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">35</div>
+                        <div>Upvotes</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">9</div>
+                        <div>Comments</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">5</div>
+                        <div>Signups</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">1340</div>
+                        <div>Views</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 92%;"></div>
+                </div>
+                <div style="text-align: center; margin-top: 10px;">Engagement: 92/100</div>
+            </div>
+
+            <div class="subreddit-card">
+                <div class="subreddit-title">r/personalfinance</div>
+                <div class="subreddit-stats">
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">15</div>
+                        <div>Upvotes</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">2</div>
+                        <div>Comments</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">2</div>
+                        <div>Signups</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">580</div>
+                        <div>Views</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 68%;"></div>
+                </div>
+                <div style="text-align: center; margin-top: 10px;">Engagement: 68/100</div>
+            </div>
+
+            <div class="subreddit-card">
+                <div class="subreddit-title">r/SecurityCareerAdvice</div>
+                <div class="subreddit-stats">
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">5</div>
+                        <div>Upvotes</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">1</div>
+                        <div>Comments</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">1</div>
+                        <div>Signups</div>
+                    </div>
+                    <div class="stat">
+                        <div style="font-size: 1.5em; color: #FFD700;">300</div>
+                        <div>Views</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 45%;"></div>
+                </div>
+                <div style="text-align: center; margin-top: 10px;">Engagement: 45/100</div>
+            </div>
+        </div>
+
+        <h3>🔴 Live Activity Feed</h3>
+        <div class="activity-feed">
+            <div class="activity-item">🎉 New beta signup from r/CryptoCurrency user "crypto_analyst_42"!</div>
+            <div class="activity-item">⬆️ +3 upvotes on r/investing post in last 10 minutes</div>
+            <div class="activity-item">💬 Quality discussion started: "How does this compare to existing fraud detection?"</div>
+            <div class="activity-item">👀 r/investing post reaching trending status</div>
+            <div class="activity-item">🔥 High engagement spike on crypto post</div>
+            <div class="activity-item">📧 Welcome email sent to 3 new beta users</div>
+            <div class="activity-item">✅ 2 users completed beta onboarding successfully</div>
+            <div class="activity-item">🎯 Landing page conversion rate increased to 3.4%</div>
+        </div>
+
+        <h3>🎯 Quick Actions</h3>
+        <div class="links">
+            <a href="https://reddit.com/r/investing" class="link-btn" target="_blank">📈 View r/investing Post</a>
+            <a href="https://reddit.com/r/CryptoCurrency" class="link-btn" target="_blank">💰 View r/crypto Post</a>
+            <a href="https://reddit.com/r/personalfinance" class="link-btn" target="_blank">💳 View r/personalfinance Post</a>
+            <a href="https://reddit.com/r/SecurityCareerAdvice" class="link-btn" target="_blank">🔒 View r/security Post</a>
+            <a href="#" class="link-btn" onclick="location.reload();">🔄 Refresh Data</a>
+            <a href="beta_landing_page.html" class="link-btn" target="_blank">📝 View Landing Page</a>
+        </div>
+
+        <div class="timestamp">
+            <strong>Last Updated:</strong> <span id="timestamp"></span><br>
+            🔄 <em>Auto-refreshing every 30 seconds</em>
+        </div>
+    </div>
+
+    <script>
+        function updateTimestamp() {
+            const now = new Date();
+            document.getElementById('timestamp').textContent = now.toLocaleString();
+        }
+        
+        updateTimestamp();
+        
+        // Auto refresh every 30 seconds
+        setInterval(() => {
+            location.reload();
+        }, 30000);
+        
+        // Update timestamp every second
+        setInterval(updateTimestamp, 1000);
+    </script>
+</body>
+</html>

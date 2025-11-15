@@ -1,0 +1,114 @@
+# Finance Anomaly Radar (FAR) Configuration
+
+# Application Settings
+app:
+  name: "Finance Anomaly Radar"
+  version: "1.0.0"
+  debug: true
+  log_level: "INFO"
+
+# AI Engine Settings
+ai_engines:
+  nlp_detector:
+    model_name: "distilbert-base-uncased"
+    confidence_threshold: 0.75
+    batch_size: 32
+  
+  market_detector:
+    window_size: 100
+    anomaly_threshold: 2.5
+    min_volume_spike: 3.0
+  
+  transaction_analyzer:
+    daily_limit_threshold: 50000
+    velocity_threshold: 5
+    geo_radius_km: 50
+  
+  social_graph:
+    min_network_size: 10
+    influence_threshold: 0.6
+    bot_probability_threshold: 0.8
+
+# Alert System
+alerts:
+  risk_levels:
+    low: 
+      color: "#00FF00"  # Green
+      sound: "low_risk.wav"
+    medium:
+      color: "#FFA500"  # Orange
+      sound: "medium_risk.wav"
+    high:
+      color: "#FF0000"  # Red
+      sound: "high_risk.wav"
+  
+  notification_methods:
+    - "visual"
+    - "audio"
+    - "vibration"
+    - "email"
+    - "sms"
+
+# Database Configuration
+database:
+  main_db:
+    type: "postgresql"
+    host: "localhost"
+    port: 5432
+    name: "far_db"
+    user: "far_user"
+    password: "far_password"
+  
+  cache_db:
+    type: "redis"
+    host: "localhost"
+    port: 6379
+    db: 0
+  
+  graph_db:
+    type: "neo4j"
+    uri: "bolt://localhost:7687"
+    user: "neo4j"
+    password: "neo4j_password"
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins: ["*"]
+  rate_limit: 100  # requests per minute
+
+# Data Sources
+data_sources:
+  market_data:
+    yahoo_finance: true
+    alpha_vantage_key: "YOUR_ALPHA_VANTAGE_KEY"
+    crypto_api: "binance"
+  
+  social_media:
+    twitter_api_key: "YOUR_TWITTER_KEY"
+    telegram_bot_token: "YOUR_TELEGRAM_TOKEN"
+  
+  payment_systems:
+    upi_webhook_url: "https://your-upi-webhook.com"
+    bank_api_keys: []
+
+# Model Paths
+model_paths:
+  nlp_model: "models/scam_detector_nlp.pkl"
+  market_model: "models/market_anomaly_detector.pkl"
+  transaction_model: "models/transaction_fraud_detector.pkl"
+  graph_model: "models/social_graph_analyzer.pkl"
+  fusion_model: "models/radar_fusion_engine.pkl"
+
+# Training Configuration
+training:
+  data_split:
+    train: 0.7
+    validation: 0.15
+    test: 0.15
+  
+  epochs: 50
+  learning_rate: 0.001
+  early_stopping_patience: 10
+  model_save_interval: 5

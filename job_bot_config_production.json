@@ -1,0 +1,106 @@
+{
+  "user_profile": {
+    "full_name": "Bharathan M",
+    "email": "bharathan1404@gmail.com",
+    "phone": "+919566030215",
+    "location": "chennai",
+    "target_roles": [
+      "Data Analyst",
+      "Product Analyst",
+      "Business Analyst",
+      "Backend Developer"
+    ],
+    "preferred_locations": [
+      "Remote"
+    ],
+    "salary_min": 400000,
+    "salary_max": 1200000,
+    "job_types": [
+      "full-time",
+      "remote"
+    ],
+    "experience_level": [
+      "mid",
+      "senior"
+    ],
+    "technical_skills": [
+      "Python",
+      "SQL",
+      "Shell Scripting",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "Power BI",
+      "Tableau",
+      "Excel",
+      "MySQL",
+      "PostgreSQL",
+      "SQL Server",
+      "Snowflake",
+      "EDA",
+      "KPI Tracking",
+      "Product Analytics",
+      "A/B Testing",
+      "ETL",
+      "Data Pipelines",
+      "Data Visualization",
+      "Dashboard Development",
+      "Statistical Analysis",
+      "Machine Learning",
+      "NLP",
+      "Sentiment Analysis",
+      "AWS",
+      "Git",
+      "GitHub",
+      "Manufacturing Analytics",
+      "Business Intelligence"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem Solving",
+      "Leadership"
+    ],
+    "keywords_must_have": [
+      "data analyst",
+      "product analyst",
+      "python",
+      "sql",
+      "analytics"
+    ],
+    "keywords_nice_to_have": [
+      "aws",
+      "tableau",
+      "power bi",
+      "pandas",
+      "numpy",
+      "matplotlib",
+      "seaborn",
+      "machine learning",
+      "a/b testing",
+      "kpi",
+      "dashboard",
+      "etl",
+      "snowflake",
+      "postgresql",
+      "product analytics",
+      "business intelligence",
+      "data visualization",
+      "creator economy"
+    ],
+    "keywords_avoid": [
+      "NA"
+    ],
+    "auto_apply_enabled": true,
+    "max_applications_per_day": 30,
+    "min_match_score": 60.0,
+    "cover_letter_template": "Dear Hiring Manager,\n\nI am excited to apply for the {title} position at {company}...",
+    "resume_path": "resume.pdf",
+    "email_notifications": true,
+    "daily_report": true
+  },
+  "linkedin_credentials": {
+    "email": "",
+    "password": ""
+  }
+}

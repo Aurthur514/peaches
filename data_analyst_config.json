@@ -1,0 +1,155 @@
+{
+  "_comment": "DATA ANALYST JOB AGENT CONFIGURATION - BHARATHAN M",
+  "_instructions": "1. Update LinkedIn password, 2. Get free Gemini key from https://makersuite.google.com/app/apikey, 3. Run agent!",
+  
+  "first_name": "Bharathan",
+  "last_name": "M",
+  "email": "bharathan1404@gmail.com",
+  "phone": "+91 9566030215",
+  
+  "linkedin_email": "mbharathan2000@gmail.com",
+  "linkedin_password": "Aurthur@1404",
+  
+  "linkedin_url": "https://linkedin.com/in/bharathan-m-baa54320b",
+  "github_url": "https://github.com/Aurthur514/PROFILE",
+  
+  "city": "Chennai",
+  "country": "India",
+  "years_experience": 1.5,
+  "current_company": "Flextronics",
+  "current_role": "Data Analyst",
+  
+  "job_title": "Data Analyst",
+  "target_roles": [
+    "Data Analyst",
+    "Product Analyst",
+    "Business Analyst",
+    "Analytics Engineer",
+    "BI Analyst"
+  ],
+  
+  "skills": [
+    "Python",
+    "SQL",
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "Seaborn",
+    "Tableau",
+    "Power BI",
+    "Excel",
+    "MySQL",
+    "PostgreSQL",
+    "Microsoft SQL Server",
+    "Snowflake",
+    "BigQuery",
+    "Product Analytics",
+    "KPI Tracking",
+    "A/B Testing",
+    "EDA",
+    "ETL",
+    "Data Pipelines",
+    "DBT",
+    "AWS",
+    "Git",
+    "GitHub",
+    "Data Visualization",
+    "Dashboard Development",
+    "Shell Scripting",
+    "Machine Learning",
+    "NLP",
+    "Sentiment Analysis",
+    "Statistical Analysis"
+  ],
+  
+  "domain_expertise": [
+    "Product Analytics",
+    "Manufacturing Analytics",
+    "Creator Economy",
+    "User Behavior Analysis",
+    "Content Performance Analysis"
+  ],
+  
+  "min_match_score": 0.3,
+  
+  "master_resume_path": "d:/peaches/bharathan_resume.txt",
+  "tailored_resumes_dir": "d:/peaches/tailored_applications/resumes",
+  "log_dir": "d:/peaches/logs",
+  
+  "gemini_key": "AIzaSyBAFDRLsFY_si_C_dapAqcNYfYsoAWz7PY",
+  
+  "job_searches": [
+    {
+      "keywords": "Data Analyst",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Product Analyst",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Business Intelligence Analyst",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Data Analyst",
+      "location": "India",
+      "remote_only": false
+    },
+    {
+      "keywords": "Data Analyst",
+      "location": "Chennai",
+      "remote_only": false
+    },
+    {
+      "keywords": "Data Analyst",
+      "location": "Bangalore",
+      "remote_only": false
+    },
+    {
+      "keywords": "SQL Python Analyst",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Analytics Engineer",
+      "location": "Remote",
+      "remote_only": true
+    }
+  ],
+  
+  "salary_expectations": {
+    "india_lpa": {
+      "current": "6",
+      "expected": "8-10"
+    },
+    "usd_annual": {
+      "minimum": "50000",
+      "expected": "60000-70000"
+    }
+  },
+  
+  "work_preferences": {
+    "willing_to_relocate": true,
+    "need_visa_sponsorship": true,
+    "remote_only": false,
+    "hybrid_ok": true,
+    "notice_period": "30 days"
+  },
+  
+  "platforms": ["linkedin", "naukri", "instahyre"],
+  
+  "resume_summary": "Data Analyst with 2+ years of experience in product analytics, data visualization, and business intelligence. Expertise in SQL, Python, Tableau, and Power BI. Proven track record in manufacturing analytics at Flextronics and product analysis projects. Strong skills in dashboard development, KPI tracking, and translating data into actionable insights.",
+  
+  "_notes": {
+    "min_match_score": "0.3 = 30% skill match required. Adjust based on results",
+    "skills": "Updated with your actual resume skills - SQL, Python, Tableau, etc.",
+    "gemini_key": "Get FREE from https://makersuite.google.com/app/apikey",
+    "job_searches": "Covers Data Analyst, Product Analyst, BI roles across India and Remote",
+    "salary": "Update based on your expectations for India (LPA) and international (USD)",
+    "platforms": "LinkedIn for all, Naukri/Instahyre for India jobs"
+  }
+}

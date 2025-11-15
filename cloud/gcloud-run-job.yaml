@@ -1,0 +1,42 @@
+# Google Cloud Run Job Configuration
+# Deploy with: gcloud run jobs create trading-bot --source . --region us-central1
+
+apiVersion: run.googleapis.com/v1
+kind: Job
+metadata:
+  name: trading-bot
+  annotations:
+    run.googleapis.com/execution-environment: gen2
+spec:
+  template:
+    spec:
+      parallelism: 1
+      completions: 1
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: trading-bot
+            image: gcr.io/PROJECT_ID/trading-bot:latest
+            env:
+            - name: CS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: trading-secrets
+                  key: CS_API_KEY
+            - name: CS_API_SECRET_HEX
+              valueFrom:
+                secretKeyRef:
+                  name: trading-secrets
+                  key: CS_API_SECRET_HEX
+            - name: CS_DRY_RUN
+              value: "false"
+            - name: CS_WALLET_BALANCE
+              value: "1000"
+            - name: CS_MAX_SYMBOLS
+              value: "50"
+            resources:
+              limits:
+                cpu: 1000m
+                memory: 512Mi
+          timeoutSeconds: 3600

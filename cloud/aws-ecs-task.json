@@ -1,0 +1,49 @@
+# AWS ECS Task Definition for Scheduled Trading Bot
+{
+  "family": "trading-bot",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::ACCOUNT_ID:role/tradingBotTaskRole",
+  "containerDefinitions": [
+    {
+      "name": "trading-bot",
+      "image": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/trading-bot:latest",
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/trading-bot",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "environment": [
+        {
+          "name": "CS_DRY_RUN",
+          "value": "false"
+        },
+        {
+          "name": "CS_WALLET_BALANCE", 
+          "value": "1000"
+        },
+        {
+          "name": "CS_MAX_SYMBOLS",
+          "value": "50"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "CS_API_KEY",
+          "valueFrom": "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:trading-bot/api-key"
+        },
+        {
+          "name": "CS_API_SECRET_HEX",
+          "valueFrom": "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:trading-bot/api-secret"
+        }
+      ]
+    }
+  ]
+}

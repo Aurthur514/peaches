@@ -1,0 +1,96 @@
+{
+  "_comment": "FULLSTACK DEVELOPER JOB AGENT CONFIGURATION",
+  "_instructions": "1. Copy this file to profile.json, 2. Fill in your details, 3. Get free Gemini key from https://makersuite.google.com/app/apikey",
+  
+  "first_name": "BHARATHAN",
+  "last_name": "MURUGANANDAN",
+  "email": "mbharathan2000@gmail.com",
+  "phone": "+91 9566030215",
+  
+  "linkedin_email": "mbharathan2000@gmail.com",
+  "linkedin_password": "YOUR_LINKEDIN_PASSWORD_HERE",
+  
+  "linkedin_url": "https://www.linkedin.com/in/bharathan-m-baa54320b",
+  "github_url": "https://github.com/Aurthur514/PROFILE",
+  
+  "city": "Chennai",
+  "years_experience": 1.5,
+  
+  "skills": [
+    "React",
+    "JavaScript",
+    "TypeScript",
+    "Node.js",
+    "Express",
+    "Python",
+    "Django",
+    "Flask",
+    "PostgreSQL",
+    "MongoDB",
+    "MySQL",
+    "Redis",
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Git",
+    "REST API",
+    "GraphQL",
+    "HTML",
+    "CSS",
+    "Tailwind",
+    "CI/CD",
+    "Microservices",
+    "Agile"
+  ],
+  
+  "min_match_score": 0.3,
+  
+  "master_resume_path": "d:/peaches/test_resume.txt",
+  "tailored_resumes_dir": "d:/peaches/tailored_resumes",
+  "log_dir": "d:/peaches/logs",
+  
+  "gemini_key": "YOUR_FREE_GEMINI_API_KEY_HERE",
+  
+  "job_searches": [
+    {
+      "keywords": "Fullstack Developer",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Full Stack Engineer",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Software Engineer Fullstack",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Full Stack Developer",
+      "location": "India",
+      "remote_only": false
+    },
+    {
+      "keywords": "React Node Developer",
+      "location": "Remote",
+      "remote_only": true
+    },
+    {
+      "keywords": "Python Fullstack Developer",
+      "location": "Remote",
+      "remote_only": true
+    }
+  ],
+  
+  "platforms": ["linkedin"],
+  
+  "_notes": {
+    "min_match_score": "0.0-1.0 where 0.3 means 30% skill match required. Lower = more applications, Higher = more selective",
+    "skills": "List all your technical skills. Used for matching against job descriptions",
+    "gemini_key": "Get FREE key from https://makersuite.google.com/app/apikey - no credit card needed",
+    "job_searches": "Add more search queries with different keywords and locations",
+    "dry_run": "Always test with --dry-run flag first to see what agent will do"
+  }
+}

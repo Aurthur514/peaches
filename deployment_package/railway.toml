@@ -1,0 +1,14 @@
+[build]
+builder = "DOCKERFILE"
+
+[deploy]
+startCommand = "python run_bot.py"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+[env]
+CS_API_KEY = { required = true }
+CS_API_SECRET_HEX = { required = true }
+CS_DRY_RUN = { default = "false" }
+CS_WALLET_BALANCE = { default = "1000" }
+CS_MAX_SYMBOLS = { default = "50" }

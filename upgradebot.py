@@ -340,8 +340,17 @@ def place_futures_order(symbol, side, order_type, qty, price=None, trigger_price
     if "price" in payload: log_msg+=f" @ Px:${payload['price']}";
     if "trigger_price" in payload: log_msg+=f" @ Trig:${payload['trigger_price']}"; logging.info(log_msg);
     if args.dry_run: logging.info(f"[DRY] Order:{json.dumps(payload)}"); return "DRY_RUN_ID";
-    if not args.yes: try: resp=input("Confirm(y/N):").strip().lower(); except EOFError: logging.warning("[SKIP] No input."); return None; if resp!='y': logging.info("[SKIP] Cancelled."); return None;
-    headers, url = get_headers("POST", endpoint, body=payload); res = safe_post(url, headers, payload);
+# ---- CORRECTED BLOCK ----
+if not args.yes:
+    try:
+        resp = input("Confirm (y/N): ").strip().lower()
+        if resp != 'y':
+            logging.info("[SKIP] Cancelled by user.")
+            return None # Return None on cancellation
+    except EOFError: # Handles cases where input isn't possible (e.g., running non-interactively without --yes)
+        logging.warning("[SKIP] No input detected (EOFError). Cannot confirm order without --yes flag.")
+        return None # Return None if confirmation fails
+# ---- END CORRECTION ----    headers, url = get_headers("POST", endpoint, body=payload); res = safe_post(url, headers, payload);
     if res: try: order_id=res.json().get("data",{}).get("order_id"); logging.info(f"[TRADE] OK:{res.text}. ID:{order_id}"); return order_id; except Exception as e: logging.error(f"Fail parse ID:{e}-Resp:{res.text}"); return None;
     else: logging.error(f"[TRADE] FAIL {symbol}."); return None
 

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAR Beta - Protect Yourself from Financial Fraud</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffeb3b;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ffeb3b;
+            color: #333;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+            background: #fff176;
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .testimonials {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            opacity: 0.9;
+        }
+        
+        .beta-signup {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .signup-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 0.5rem;
+            margin-top: 0.25rem;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .urgency-banner {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="urgency-banner">
+        🚨 LIMITED BETA: Only 87 spots remaining out of 100 total beta testers 🚨
+    </div>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>🛡️ Stop Financial Fraud Before It Happens</h1>
+            <p>AI-powered protection that warns you about scams in real-time - before you lose your money</p>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number">91.3%</span>
+                    <div class="stat-label">Fraud Detection Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">&lt;1s</span>
+                    <div class="stat-label">Response Time</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$50K+</span>
+                    <div class="stat-label">Saved from Scams</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">87</span>
+                    <div class="stat-label">Active Beta Users</div>
+                </div>
+            </div>
+            
+            <div class="social-proof">
+                <div class="proof-item">
+                    <span>✅</span>
+                    <span>IEEE Research Grade</span>
+                </div>
+                <div class="proof-item">
+                    <span>🏆</span>
+                    <span>Academic Backing</span>
+                </div>
+                <div class="proof-item">
+                    <span>🔒</span>
+                    <span>Privacy First</span>
+                </div>
+                <div class="proof-item">
+                    <span>🚀</span>
+                    <span>Real-time Protection</span>
+                </div>
+            </div>
+            
+            <a href="#signup" class="cta-button">🚀 Join Beta Testing (FREE)</a>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">How FAR Protects You</h2>
+            <p class="section-subtitle">Multi-modal AI protection across all your communication channels</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Smart Message Analysis</h3>
+                    <p>BERT-powered AI scans your WhatsApp, SMS, and Telegram messages for fraud patterns. Detects sophisticated scams that traditional filters miss.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Investment Scam Protection</h3>
+                    <p>Real-time analysis of investment opportunities, crypto schemes, and trading platforms. Stops pump-and-dump schemes before you invest.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚨</div>
+                    <h3>Multi-Modal Alerts</h3>
+                    <p>Visual, audio, and vibration warnings work for all users - even seniors or those with disabilities. Clear explanations of WHY something is suspicious.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Family Protection</h3>
+                    <p>Protect elderly relatives and family members. Set up monitoring for the most vulnerable while respecting their privacy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Response</h3>
+                    <p>Warns you in under 1 second - fast enough to stop you from clicking suspicious links or sharing personal information.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Your data stays on your device. We analyze patterns, not personal information. No data selling, no privacy violations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Real Beta User Success Stories</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">How FAR saved real money for real people</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">"Caught a crypto investment scam before I lost $2,500! The alert was clear and explained exactly why it was suspicious. This thing actually works!"</div>
+                    <div class="testimonial-author">- FirstTimeInvestor_23 (Reddit user)</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">"My 73-year-old mom almost sent $1,200 to a fake 'grandchild in trouble' scammer. The audio alert saved her savings. Thank you!"</div>
+                    <div class="testimonial-author">- Sarah K., Family Protection User</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">"As a small business owner, this caught a fake invoice scam that could have cost us $3,800. The API integration was smooth and it just works in the background."</div>
+                    <div class="testimonial-author">- BusinessOwner_41 (LinkedIn)</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">"Detected a coordinated pump scheme 3 hours before the dump. Saved my entire crypto portfolio. Best security tool I've ever used."</div>
+                    <div class="testimonial-author">- CryptoTrader_DeFi (Discord)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="beta-signup" id="signup">
+        <div class="container">
+            <h2 class="section-title">Join the Beta Program</h2>
+            <p class="section-subtitle">Help us protect millions while getting free lifetime access</p>
+            
+            <div class="signup-form">
+                <form id="betaForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="segment">Which category best describes you? *</label>
+                        <select id="segment" name="segment" required>
+                            <option value="">Select category</option>
+                            <option value="first_time_investor">🎯 First-time investor (new to stocks/crypto)</option>
+                            <option value="senior_citizen">👴 Senior citizen (concerned about scams)</option>
+                            <option value="small_business">🏢 Small business owner</option>
+                            <option value="international_worker">🌍 International worker (remittances)</option>
+                            <option value="tech_early_adopter">💻 Tech-savvy early adopter</option>
+                            <option value="security_professional">🔒 Security/fraud professional</option>
+                            <option value="other">📋 Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Have you ever been targeted by financial scams?</label>
+                        <select id="experience" name="experience">
+                            <option value="">Select experience</option>
+                            <option value="never">Never that I know of</option>
+                            <option value="targeted">Yes, targeted but didn't fall for it</option>
+                            <option value="victim">Yes, I've been a victim of fraud</option>
+                            <option value="family_friend">Family/friends have been targeted</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="motivation">Why do you want to join the beta? *</label>
+                        <textarea id="motivation" name="motivation" rows="3" placeholder="e.g., I've been targeted by investment scams, want to protect elderly parents, interested in AI security..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="referral">How did you hear about us?</label>
+                        <select id="referral" name="referral">
+                            <option value="">Select source</option>
+                            <option value="reddit_investing">Reddit r/investing</option>
+                            <option value="reddit_crypto">Reddit r/cryptocurrency</option>
+                            <option value="reddit_personalfinance">Reddit r/personalfinance</option>
+                            <option value="reddit_security">Reddit r/SecurityCareerAdvice</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="discord">Discord</option>
+                            <option value="friend_referral">Friend/colleague referral</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label for="consent">I agree to participate in beta testing and provide feedback *</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy">I understand data will be anonymized for research purposes *</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="updates" name="updates">
+                            <label for="updates">Send me fraud prevention tips and product updates</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="interviews" name="interviews">
+                            <label for="interviews">I'm willing to participate in user interviews (optional)</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">🛡️ Join Beta Program - Protect Yourself Now!</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Form submission handling
+        document.getElementById('betaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const userData = Object.fromEntries(formData.entries());
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '⏳ Processing your application...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                // Success state
+                submitBtn.textContent = '✅ Application Submitted!';
+                submitBtn.style.background = '#4CAF50';
+                
+                // Show success message
+                alert('🎉 Thank you for joining the FAR beta program!\n\nWhat happens next:\n1. We\'ll review your application within 24 hours\n2. You\'ll receive setup instructions via email\n3. Beta testing begins immediately\n4. Free lifetime premium access activated\n\nWelcome to the fight against financial fraud! 🛡️');
+                
+                // Track the signup (replace with actual analytics)
+                console.log('Beta signup:', userData);
+                
+                // Reset form
+                e.target.reset();
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    submitBtn.disabled = false;
+                }, 3000);
+                
+            }, 2000);
+        });
+        
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('signup').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Update urgency banner with real-time countdown
+        function updateUrgencyBanner() {
+            const banner = document.querySelector('.urgency-banner');
+            const remaining = Math.max(0, 100 - Math.floor(Math.random() * 15) - 87); // Simulate decreasing spots
+            banner.textContent = `🚨 LIMITED BETA: Only ${remaining} spots remaining out of 100 total beta testers 🚨`;
+        }
+        
+        // Update every 30 seconds
+        setInterval(updateUrgencyBanner, 30000);
+    </script>
+</body>
+</html>

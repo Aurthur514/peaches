@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "containerGroupName": {
+      "type": "string",
+      "defaultValue": "trading-bot-group"
+    },
+    "containerImageName": {
+      "type": "string", 
+      "defaultValue": "your-registry.azurecr.io/trading-bot:latest"
+    },
+    "apiKey": {
+      "type": "securestring"
+    },
+    "apiSecret": {
+      "type": "securestring"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ContainerInstance/containerGroups",
+      "apiVersion": "2021-09-01",
+      "name": "[parameters('containerGroupName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "containers": [
+          {
+            "name": "trading-bot",
+            "properties": {
+              "image": "[parameters('containerImageName')]",
+              "resources": {
+                "requests": {
+                  "cpu": 0.5,
+                  "memoryInGb": 1
+                }
+              },
+              "environmentVariables": [
+                {
+                  "name": "CS_DRY_RUN",
+                  "value": "false"
+                },
+                {
+                  "name": "CS_WALLET_BALANCE",
+                  "value": "1000"
+                },
+                {
+                  "name": "CS_MAX_SYMBOLS",
+                  "value": "50"
+                },
+                {
+                  "name": "CS_API_KEY",
+                  "secureValue": "[parameters('apiKey')]"
+                },
+                {
+                  "name": "CS_API_SECRET_HEX",
+                  "secureValue": "[parameters('apiSecret')]"
+                }
+              ]
+            }
+          }
+        ],
+        "osType": "Linux",
+        "restartPolicy": "Never"
+      }
+    }
+  ]
+}
