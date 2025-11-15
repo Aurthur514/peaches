@@ -22,10 +22,13 @@ sys.path.append(str(Path(__file__).parent))
 try:
     from auto_job_bot import AutoJobBot, JobListing, UserProfile, JobMatcher
     from enhanced_job_scrapers import get_adapter
+    # Import enhanced system
+    from enhanced_auto_job_bot import EnhancedAutoJobBot, IntelligentJobMatcher
+    ENHANCED_SYSTEM_AVAILABLE = True
 except ImportError as e:
     st.error(f"Import error: {e}. Please ensure all required modules are installed.")
     st.error("Make sure you're running from the correct directory with all Python files present.")
-    st.stop()
+    ENHANCED_SYSTEM_AVAILABLE = False
 
 # Page configuration
 st.set_page_config(
@@ -107,139 +110,198 @@ def load_config():
         return None
 
 async def enhanced_job_search(query, location, job_sites, max_results=20):
-    """Enhanced job search across multiple platforms with comprehensive error recovery"""
-    all_jobs = []
-    search_results = {}
+    """Enhanced job search across multiple platforms with intelligent matching"""
     
-    # Create progress tracking
-    progress_container = st.container()
-    with progress_container:
-        progress_bar = st.progress(0)
-        status_text = st.empty()
+    if not ENHANCED_SYSTEM_AVAILABLE:
+        st.error("❌ Enhanced system not available. Please check imports.")
+        return [], {}
     
-    for i, site in enumerate(job_sites):
-        try:
-            status_text.text(f"🔍 Searching {site.title()}... ({i+1}/{len(job_sites)})")
-            progress_bar.progress((i + 0.5) / len(job_sites))
-            
-            # Load user profile for adapter
-            config = load_config()
-            if not config:
-                continue
-                
-            profile_config = config['user_profile']
-            user_profile = UserProfile(**profile_config)
-            
-            # Get adapter and search
-            adapter = get_adapter(site.lower(), user_profile)
-            jobs = await adapter.search_jobs(query, location, limit=max_results)
-            
-            search_results[site] = {
-                'count': len(jobs),
-                'jobs': jobs,
-                'status': '✅ Success',
-                'error': None
-            }
-            
-            all_jobs.extend(jobs)
-            status_text.text(f"✅ {site.title()}: Found {len(jobs)} jobs")
-            
-        except Exception as e:
-            error_msg = str(e)
-            search_results[site] = {
-                'count': 0,
-                'jobs': [],
-                'status': f'❌ Error',
-                'error': error_msg
-            }
-            st.warning(f"⚠️ Error searching {site}: {error_msg[:100]}...")
+    # Initialize enhanced bot
+    try:
+        bot = EnhancedAutoJobBot()
+        st.success(f"🤖 Enhanced Auto Job Bot initialized for {bot.profile.full_name}")
         
-        progress_bar.progress((i + 1) / len(job_sites))
-        time.sleep(0.5)  # Small delay to show progress
-    
-    status_text.text("🎉 Search completed!")
-    time.sleep(1)
-    progress_container.empty()
-    
-    return all_jobs, search_results
+        # Show current settings
+        with st.expander("⚙️ Current Auto-Apply Settings"):
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.info(f"🎯 Min Match: {bot.profile.min_match_score}%")
+            with col2:
+                st.info(f"📊 Max Apps/Day: {bot.profile.max_applications_per_day}")
+            with col3:
+                auto_status = "🟢 ENABLED" if bot.profile.auto_apply_enabled else "🔴 DISABLED"
+                st.info(f"🤖 Auto-Apply: {auto_status}")
+        
+        # Perform intelligent search with auto-application
+        results = await bot.intelligent_job_search_and_apply(
+            query=query,
+            location=location,
+            platforms=job_sites,
+            max_results=max_results
+        )
+        
+        if results.get('status') == 'success':
+            return results['jobs'], {
+                'summary': results['summary'],
+                'auto_applications': results['auto_applications']
+            }
+        else:
+            st.error(f"❌ Search failed: {results.get('error', 'Unknown error')}")
+            return [], {}
+            
+    except Exception as e:
+        st.error(f"❌ Enhanced job search failed: {e}")
+        import traceback
+        with st.expander("🔍 Technical Details"):
+            st.code(traceback.format_exc())
+        return [], {}
 
 def display_search_results_summary(search_results):
-    """Display a beautiful summary of search results"""
-    st.subheader("🎯 Search Results Summary")
+    """Display enhanced search results with auto-application summary"""
     
-    for site, result in search_results.items():
-        with st.container():
-            col1, col2, col3, col4 = st.columns([2, 2, 1, 2])
+    if isinstance(search_results, dict) and 'summary' in search_results:
+        summary = search_results['summary']
+        auto_apps = search_results.get('auto_applications', [])
+        
+        st.subheader("🎯 Enhanced Search Results Summary")
+        
+        # Main metrics
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.metric("📋 Total Jobs", summary['total_jobs'])
+        
+        with col2:
+            st.metric("🎯 High Match (80%+)", summary['high_match_jobs'], 
+                     help="Jobs with 80%+ skill match")
+        
+        with col3:
+            st.metric("✅ Auto-Apply Eligible", summary['auto_apply_eligible'],
+                     help="Jobs qualifying for automatic application")
+        
+        with col4:
+            st.metric("📧 Applications Sent", len(auto_apps),
+                     help="Automatic applications sent this session")
+        
+        # Auto-application status
+        if auto_apps:
+            st.success(f"🚀 {len(auto_apps)} applications automatically sent!")
+            
+            with st.expander("📧 View Auto-Applied Jobs"):
+                for job in auto_apps:
+                    st.markdown(f"""
+                    **🎯 {job.title}** at **{job.company}**
+                    - Match Score: {job.match_score:.1f}%
+                    - Reason: {job.apply_reason}
+                    """)
+        
+        # Skill analysis
+        if 'most_demanded_skills' in summary:
+            st.divider()
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("#### 🔥 Most Demanded Skills")
+                for skill, count in summary['most_demanded_skills'][:8]:
+                    st.markdown(f"• **{skill}**: {count} jobs")
+            
+            with col2:
+                st.markdown("#### 💡 Skill Improvement Suggestions")
+                skill_suggestions = summary.get('skill_gap_analysis', {}).get('skill_improvement_suggestions', [])
+                for suggestion in skill_suggestions[:5]:
+                    st.markdown(f"• {suggestion}")
+        
+        # Daily application tracking
+        st.divider()
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.info(f"📊 Applications Today: {summary['applications_sent_today']}/{summary.get('applications_remaining', 0) + summary['applications_sent_today']}")
+        
+        with col2:
+            remaining = summary.get('applications_remaining', 0)
+            if remaining > 0:
+                st.success(f"🔄 Remaining: {remaining}")
+            else:
+                st.warning("⚠️ Daily limit reached")
+        
+        with col3:
+            if summary['applications_sent_today'] > 0:
+                efficiency = (summary['applications_sent_today'] / summary['total_jobs']) * 100
+                st.metric("⚡ Apply Rate", f"{efficiency:.1f}%")
+    else:
+        # Fallback to original display for legacy search results
+        st.subheader("🎯 Search Results Summary")
+        for site, result in search_results.items():
+            col1, col2, col3 = st.columns([2, 2, 1])
             
             with col1:
                 st.markdown(f"**🌐 {site.title()}**")
             
             with col2:
-                if result['error']:
+                if result.get('error'):
                     st.markdown(f'<span class="status-error">{result["status"]}</span>', unsafe_allow_html=True)
-                    with st.expander("View Error Details"):
-                        st.code(result['error'])
                 else:
                     st.markdown(f'<span class="status-success">{result["status"]}</span>', unsafe_allow_html=True)
             
             with col3:
                 st.metric("Jobs", result['count'])
-            
-            with col4:
-                if result['count'] > 0:
-                    st.success(f"📈 {result['count']} opportunities found")
-                else:
-                    st.info("📭 No jobs found")
-        
-        st.divider()
 
 def display_enhanced_job_results(jobs, profile):
-    """Display job results with enhanced formatting and comprehensive match scoring"""
+    """Display job results with enhanced skill-based matching and auto-apply status"""
     if not jobs:
         st.info("📭 No jobs to display")
         return
     
     st.subheader(f"📋 Found {len(jobs)} Job Opportunities")
     
-    # Initialize job matcher
-    try:
-        user_profile = UserProfile(**profile)
-        matcher = JobMatcher(user_profile)
-    except Exception as e:
-        st.error(f"❌ Error initializing job matcher: {e}")
-        return
+    # Sort jobs by match score
+    jobs.sort(key=lambda x: getattr(x, 'match_score', 0), reverse=True)
     
-    # Sort jobs by match score (if possible)
-    jobs_with_scores = []
-    for job in jobs:
-        try:
-            score = matcher.calculate_match_score(job)
-            jobs_with_scores.append((job, score))
-        except:
-            jobs_with_scores.append((job, 0))
-    
-    jobs_with_scores.sort(key=lambda x: x[1], reverse=True)
-    
-    for i, (job, match_score) in enumerate(jobs_with_scores):
-        # Determine card color based on match score
-        if match_score >= 80:
-            border_color = "#4CAF50"  # Green
+    # Display jobs with enhanced information
+    for i, job in enumerate(jobs):
+        match_score = getattr(job, 'match_score', 0)
+        auto_apply_eligible = getattr(job, 'auto_apply_eligible', False)
+        skills_found = getattr(job, 'skills_found', [])
+        apply_reason = getattr(job, 'apply_reason', '')
+        
+        # Determine card styling based on match score and auto-apply status
+        if auto_apply_eligible:
+            border_color = "#4CAF50"  # Green for auto-applied
+            score_emoji = "🚀"
+            status_badge = "✅ AUTO-APPLIED"
+            status_color = "green"
+        elif match_score >= 80:
+            border_color = "#FF9800"  # Orange for high match
             score_emoji = "🎯"
+            status_badge = "⭐ HIGH MATCH"
+            status_color = "orange"
         elif match_score >= 60:
-            border_color = "#FF9800"  # Orange
+            border_color = "#2196F3"  # Blue for good match
             score_emoji = "⚡"
+            status_badge = "✓ GOOD MATCH"
+            status_color = "blue"
         else:
-            border_color = "#9E9E9E"  # Gray
+            border_color = "#9E9E9E"  # Gray for low match
             score_emoji = "📊"
+            status_badge = "○ LOW MATCH"
+            status_color = "gray"
         
         with st.container():
+            # Job card header
             st.markdown(f"""
             <div style="background: white; padding: 1.5rem; border-radius: 10px; 
                        border-left: 4px solid {border_color}; margin-bottom: 1rem; 
                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <h4 style="margin: 0 0 0.5rem 0; color: #333;">
-                    {score_emoji} {job.title} at {job.company}
-                </h4>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h4 style="margin: 0; color: #333;">
+                        {score_emoji} {job.title} at {job.company}
+                    </h4>
+                    <span style="background: {status_color}; color: white; padding: 0.3rem 0.6rem; 
+                                border-radius: 15px; font-size: 0.8rem; font-weight: bold;">
+                        {status_badge}
+                    </span>
+                </div>
             </div>
             """, unsafe_allow_html=True)
             
@@ -247,8 +309,6 @@ def display_enhanced_job_results(jobs, profile):
             
             with col1:
                 # Job details
-                st.markdown(f"**🏢 Company:** {job.company}")
-                
                 if hasattr(job, 'location') and job.location:
                     st.markdown(f"**📍 Location:** {job.location}")
                 
@@ -258,10 +318,22 @@ def display_enhanced_job_results(jobs, profile):
                 if hasattr(job, 'job_type') and job.job_type:
                     st.markdown(f"**💼 Type:** {job.job_type}")
                 
+                # Skills found
+                if skills_found:
+                    st.markdown("**🎯 Your Skills Found:**")
+                    skills_text = ", ".join(skills_found[:8])  # Show first 8 skills
+                    if len(skills_found) > 8:
+                        skills_text += f" +{len(skills_found) - 8} more"
+                    st.markdown(f"<span style='color: #4CAF50; font-weight: bold;'>{skills_text}</span>", unsafe_allow_html=True)
+                
+                # Auto-apply reason
+                if apply_reason:
+                    st.markdown(f"**🤖 Auto-Apply Status:** {apply_reason}")
+                
                 # Job description
                 if hasattr(job, 'description') and job.description:
                     with st.expander("📄 Job Description", expanded=False):
-                        description = job.description[:800] + "..." if len(job.description) > 800 else job.description
+                        description = job.description[:1000] + "..." if len(job.description) > 1000 else job.description
                         st.markdown(description)
             
             with col2:
@@ -269,30 +341,29 @@ def display_enhanced_job_results(jobs, profile):
                 st.metric(
                     f"{score_emoji} Match Score",
                     f"{match_score:.1f}%",
-                    delta=f"{match_score - user_profile.min_match_score:.1f}%"
+                    help="AI-calculated skill match score"
                 )
                 
-                # Qualification status
-                if match_score >= user_profile.min_match_score:
-                    st.success("✅ Qualifies for application!")
-                    if st.button(f"📧 Quick Apply", key=f"apply_{i}", type="primary"):
-                        st.balloons()
-                        st.success("🚀 Application feature coming soon!")
-                else:
-                    st.warning(f"⚠️ Below threshold ({user_profile.min_match_score}%)")
-                
                 # Action buttons
-                col_actions1, col_actions2 = st.columns(2)
-                
-                with col_actions1:
+                if auto_apply_eligible:
+                    st.success("🚀 Already Applied!")
+                    if st.button(f"👁️ Track", key=f"track_{i}", help="Track application status"):
+                        st.info("🔄 Application tracking feature coming soon!")
+                else:
+                    if match_score >= 60:
+                        if st.button(f"📧 Apply Now", key=f"apply_{i}", type="primary", help="Apply to this job"):
+                            st.balloons()
+                            st.success("🚀 Manual application feature coming soon!")
+                    else:
+                        st.warning(f"⚠️ Below auto-apply threshold")
+                    
+                    # Save for later
                     if st.button("💾", key=f"save_{i}", help="Save for later"):
                         st.success("✅ Saved!")
                 
-                with col_actions2:
-                    if hasattr(job, 'url') and job.url:
-                        st.markdown(f'<a href="{job.url}" target="_blank">🔗 View Job</a>', unsafe_allow_html=True)
-                    else:
-                        st.button("🔗", key=f"link_{i}", help="Link not available", disabled=True)
+                # External link
+                if hasattr(job, 'url') and job.url:
+                    st.markdown(f'<a href="{job.url}" target="_blank" style="text-decoration: none;"><button style="background: #1f77b4; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 5px; cursor: pointer;">🔗 View Job</button></a>', unsafe_allow_html=True)
         
         st.divider()
 
