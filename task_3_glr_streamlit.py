@@ -46,6 +46,7 @@ import platform
 import importlib
 import importlib.metadata as importlib_metadata
 import io
+from task_3_internal_llm import propose_fields_from_template, map_fields_from_reports
 
 
 
@@ -376,6 +377,9 @@ def main():
 
     st.markdown("Upload a `.docx` template (placeholders like `{{field}}`) and one or more PDF photo reports.")
 
+    # Provider selector: internal heuristic (no external LLM) or auto (use configured providers)
+    provider_choice = st.radio("Provider", ["Internal (heuristic, no external LLMs)", "Auto (use configured LLM providers)"], index=0)
+
     with st.form("upload_form"):
         template_file = st.file_uploader("Insurance template (.docx)", type=["docx"], accept_multiple_files=False)
         pdf_files = st.file_uploader("Photo report PDFs (multiple)", type=["pdf"], accept_multiple_files=True)
@@ -406,20 +410,29 @@ def main():
     if placeholders:
         st.success(f"Found placeholders in template: {placeholders}")
     else:
-        st.warning("No {{placeholders}} found in template. Asking LLM to propose fields...")
-        try:
-            placeholders = ask_llm_for_fields(template_text)
-            st.success(f"LLM proposed fields: {placeholders}")
-        except Exception as e:
-            st.error(f"LLM failed to propose fields: {e}")
-            return
+        if provider_choice.startswith('Internal'):
+            st.info("No {{placeholders}} found in template. Using internal heuristic to propose fields...")
+            placeholders = propose_fields_from_template(template_text)
+            st.success(f"Internal proposed fields: {placeholders}")
+        else:
+            st.warning("No {{placeholders}} found in template. Asking LLM to propose fields...")
+            try:
+                placeholders = ask_llm_for_fields(template_text)
+                st.success(f"LLM proposed fields: {placeholders}")
+            except Exception as e:
+                st.error(f"LLM failed to propose fields: {e}")
+                return
 
-    st.info("Asking LLM to map fields to values from the reports (this requires an API key)...")
-    try:
-        mapping = ask_llm_to_map(placeholders, pdf_text)
-    except Exception as e:
-        st.error(f"LLM mapping failed: {e}")
-        return
+    if provider_choice.startswith('Internal'):
+        st.info("Using internal heuristic to map fields (no external LLM calls).")
+        mapping = map_fields_from_reports(placeholders, pdf_text)
+    else:
+        st.info("Asking LLM to map fields to values from the reports (this requires an API key)...")
+        try:
+            mapping = ask_llm_to_map(placeholders, pdf_text)
+        except Exception as e:
+            st.error(f"LLM mapping failed: {e}")
+            return
 
     st.subheader("Extracted mapping")
     st.json(mapping)
