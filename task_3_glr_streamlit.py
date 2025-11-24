@@ -41,6 +41,10 @@ try:
 except Exception:
     PdfReader = None
     HAVE_PYPDF2 = False
+import sys
+import platform
+import importlib
+import importlib.metadata as importlib_metadata
 import io
 
 
@@ -318,6 +322,42 @@ def fill_docx_template(doc: Document, mapping: Dict[str, str]) -> Document:
 def main():
     st.set_page_config(page_title="Task 3 - GLR Pipeline", layout="wide")
     st.title("Task 3 — GLR Pipeline (Insurance Template Filling)")
+
+    # Diagnostics panel (non-sensitive): show Python and package info, and whether key env vars exist
+    with st.sidebar.expander("Diagnostics", expanded=False):
+        if st.button("Refresh diagnostics"):
+            pass
+        def _get_pkg_version(pkg_name, module_name=None):
+            # Try metadata first, then module __version__, else not installed
+            try:
+                return importlib_metadata.version(pkg_name)
+            except Exception:
+                try:
+                    if module_name:
+                        mod = importlib.import_module(module_name)
+                    else:
+                        mod = importlib.import_module(pkg_name)
+                    return getattr(mod, "__version__", "unknown")
+                except Exception:
+                    return "not installed"
+
+        pkgs = {
+            "python": platform.python_version(),
+            "streamlit": _get_pkg_version("streamlit"),
+            "python-docx": _get_pkg_version("python-docx", "docx"),
+            "PyPDF2": _get_pkg_version("PyPDF2", "PyPDF2"),
+            "pdf2image": _get_pkg_version("pdf2image"),
+            "pytesseract": _get_pkg_version("pytesseract"),
+            "Pillow": _get_pkg_version("Pillow", "PIL"),
+        }
+
+        st.markdown("**Runtime**")
+        st.write({"python_version": platform.python_version(), "executable": sys.executable})
+        st.markdown("**Key package versions**")
+        st.table([{"package": k, "version": v} for k, v in pkgs.items()])
+        st.markdown("**Environment keys present (values hidden)**")
+        keys = ["GEMINI_API_KEY", "OPENROUTER_API_KEY", "OPENAI_API_KEY", "POPPLER_PATH", "TESSERACT_CMD"]
+        st.write({k: bool(os.environ.get(k)) for k in keys})
 
     if not HAVE_DOCX or not HAVE_PYPDF2:
         missing = []
