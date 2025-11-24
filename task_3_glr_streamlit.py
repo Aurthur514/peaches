@@ -425,7 +425,7 @@ def main():
 
     if provider_choice.startswith('Internal'):
         st.info("Using internal heuristic to map fields (no external LLM calls).")
-        mapping = map_fields_from_reports(placeholders, pdf_text)
+        mapping, audit = map_fields_from_reports(placeholders, pdf_text)
     else:
         st.info("Asking LLM to map fields to values from the reports (this requires an API key)...")
         try:
@@ -436,6 +436,10 @@ def main():
 
     st.subheader("Extracted mapping")
     st.json(mapping)
+
+    if provider_choice.startswith('Internal'):
+        with st.expander("Mapping audit (which rule produced each value)"):
+            st.write(audit)
 
     # Allow user to edit mapping manually
     edited = st.text_area("Edit JSON mapping before applying", value=json.dumps(mapping, indent=2), height=200)

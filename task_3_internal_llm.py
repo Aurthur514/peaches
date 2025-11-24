@@ -39,29 +39,61 @@ def propose_fields_from_template(template_text: str) -> List[str]:
     """
     fields = []
 
+    def _clean_token(tok: str) -> str:
+        t = re.sub(r"[^A-Za-z0-9_ ]", '', tok).strip().lower()
+        t = re.sub(r"\s+", '_', t)
+        # drop extremely long tokens
+        if len(t) > 40:
+            return ''
+        return t
+
     # 1) Look for explicit {{placeholders}}
     placeholders = re.findall(r"\{\{\s*([^}\s]+)\s*\}\}", template_text)
     for p in placeholders:
-        fields.append(p.strip())
+        c = _clean_token(p)
+        if c and c not in fields:
+            fields.append(c)
 
-    # 2) Headings / bold-looking inline labels (lines with colon)
+    # 2) Headings / inline labels (lines with colon)
     for line in _tokenize_lines(template_text):
         if ':' in line:
             key = line.split(':', 1)[0]
-            key = re.sub(r"[^A-Za-z0-9_ ]", '', key).strip().lower()
-            if key:
-                key = key.replace(' ', '_')
-                if key not in fields:
-                    fields.append(key)
+            k = _clean_token(key)
+            if k and k not in fields:
+                fields.append(k)
 
-    # 3) Common labels fallback
+    # 3) Common labels fallback, canonicalized
     for lab in COMMON_LABELS:
         norm = re.sub(r"[^A-Za-z0-9_]+", '_', lab).strip('_')
         if norm and norm not in fields:
             fields.append(norm)
 
-    # Keep order but limited to a reasonable number
-    return fields[:60]
+    # Canonicalize similar labels and dedupe while preserving order
+    def _canonicalize(name: str) -> str:
+        n = name.lower()
+        if 'policy' in n:
+            return 'policy_number'
+        if 'claim' in n:
+            return 'claim_number'
+        if 'insured' in n or n == 'name':
+            return 'insured_name'
+        if 'date' in n or 'loss' in n:
+            return 'date'
+        if 'phone' in n or 'tel' in n:
+            return 'phone'
+        if 'email' in n:
+            return 'email'
+        return n
+
+    seen = set()
+    out = []
+    for f in fields:
+        cf = _canonicalize(f)
+        if cf and cf not in seen:
+            seen.add(cf)
+            out.append(cf)
+
+    return out[:60]
 
 
 def _first_regex_match(pattern, text: str):
@@ -73,11 +105,12 @@ def _first_regex_match(pattern, text: str):
     return None
 
 
-def map_fields_from_reports(fields: List[str], reports_text: str) -> Dict[str, str]:
+def map_fields_from_reports(fields: List[str], reports_text: str):
     """Attempt to map each field to a value found in reports_text using heuristics.
-    Returns a dict mapping each field to the best guess (or empty string).
+    Returns a tuple (mapping_dict, audit_dict). audit_dict maps field -> {'rule':..., 'snippet':...}
     """
-    out = {}
+    mapping = {}
+    audit = {}
     text = reports_text or ''
 
     lines = _tokenize_lines(text)
@@ -86,6 +119,8 @@ def map_fields_from_reports(fields: List[str], reports_text: str) -> Dict[str, s
     for f in fields:
         key = f.lower()
         value = ''
+        reason = 'none'
+        snippet = ''
 
         # direct label search: lines containing the field name
         pattern = re.compile(rf"{re.escape(key)}[:\s-]+(.+)", re.IGNORECASE)
@@ -93,56 +128,66 @@ def map_fields_from_reports(fields: List[str], reports_text: str) -> Dict[str, s
             m = pattern.search(line)
             if m:
                 value = m.group(1).strip()
+                reason = 'label_line'
+                snippet = line.strip()
                 break
 
         # common field heuristics
         if not value:
             if 'email' in key:
-                value = _first_regex_match(RE_EMAIL, joined) or ''
+                v = _first_regex_match(RE_EMAIL, joined)
+                if v:
+                    value, reason, snippet = v, 'regex_email', v
             elif 'phone' in key or 'tel' in key:
-                value = _first_regex_match(RE_PHONE, joined) or ''
-            elif 'date' in key or 'loss_date' in key or 'taken' in key:
-                value = _first_regex_match(RE_DATE, joined) or ''
+                v = _first_regex_match(RE_PHONE, joined)
+                if v:
+                    value, reason, snippet = v, 'regex_phone', v
+            elif 'date' in key or 'loss' in key or 'taken' in key:
+                v = _first_regex_match(RE_DATE, joined)
+                if v:
+                    value, reason, snippet = v, 'regex_date', v
             elif 'claim' in key:
-                value = _first_regex_match(RE_CLAIM, joined) or _first_regex_match(RE_POLICY, joined) or ''
+                v = _first_regex_match(RE_CLAIM, joined) or _first_regex_match(RE_POLICY, joined)
+                if v:
+                    value, reason, snippet = v, 'regex_claim_policy', v
             elif 'policy' in key:
-                value = _first_regex_match(RE_POLICY, joined) or ''
+                v = _first_regex_match(RE_POLICY, joined)
+                if v:
+                    value, reason, snippet = v, 'regex_policy', v
             elif 'address' in key:
                 # naive: look for lines containing street-like keywords
                 for line in lines:
                     if re.search(r"\d+\s+\w+\s+(Street|St|Ave|Avenue|Blvd|Road|Rd)\\b", line, re.IGNORECASE):
-                        value = line.strip()
+                        value, reason, snippet = line.strip(), 'line_address', line.strip()
                         break
             else:
                 # fallback: try to extract a short phrase near a known label in text
                 for label in COMMON_LABELS:
                     if label in joined.lower():
-                        # find the label line and take next token sequence
                         for i, line in enumerate(lines):
                             if label in line.lower():
-                                # try the same line after colon
                                 if ':' in line:
                                     parts = line.split(':', 1)
                                     if parts[1].strip():
-                                        value = parts[1].strip()
+                                        value, reason, snippet = parts[1].strip(), 'label_colon_fallback', parts[1].strip()
                                         break
-                                # else try next line
                                 if i + 1 < len(lines):
-                                    value = lines[i+1].strip()
+                                    value, reason, snippet = lines[i+1].strip(), 'label_next_line_fallback', lines[i+1].strip()
                                     break
                         if value:
                             break
 
         # final trim and safety
         if value:
-            # keep value short if it's long
             if len(value) > 300:
                 value = value[:300] + '...'
-            out[f] = value
+            mapping[f] = value
+            audit[f] = {'rule': reason, 'snippet': snippet}
         else:
-            out[f] = ''
+            mapping[f] = ''
+            audit[f] = {'rule': 'not_found', 'snippet': ''}
 
-    return out
+    return mapping, audit
 
 
 if __name__ == '__main__':
