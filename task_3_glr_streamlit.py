@@ -412,7 +412,18 @@ def main():
     else:
         if provider_choice.startswith('Internal'):
             st.info("No {{placeholders}} found in template. Using internal heuristic to propose fields...")
-            placeholders = propose_fields_from_template(template_text)
+            proposals = propose_fields_with_confidence(template_text)
+            # proposals is list of (field, confidence)
+            if proposals:
+                import pandas as pd
+                df = pd.DataFrame(proposals, columns=["field", "confidence"])
+                df = df.sort_values("confidence", ascending=False).reset_index(drop=True)
+                st.markdown("**Proposed fields (sorted by confidence)**")
+                st.dataframe(df)
+                # use the sorted field names as placeholders
+                placeholders = list(df['field'].tolist())
+            else:
+                placeholders = []
             st.success(f"Internal proposed fields: {placeholders}")
         else:
             st.warning("No {{placeholders}} found in template. Asking LLM to propose fields...")

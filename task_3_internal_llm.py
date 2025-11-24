@@ -96,6 +96,68 @@ def propose_fields_from_template(template_text: str) -> List[str]:
     return out[:60]
 
 
+def propose_fields_with_confidence(template_text: str):
+    """Return a list of (field_name, confidence) tuples sorted by confidence desc.
+    Confidence: placeholders=1.0, heading=0.8, common_label=0.5
+    """
+    fields = []
+
+    def _clean_token(tok: str) -> str:
+        t = re.sub(r"[^A-Za-z0-9_ ]", '', tok).strip().lower()
+        t = re.sub(r"\s+", '_', t)
+        if len(t) > 40:
+            return ''
+        return t
+
+    # placeholders (highest confidence)
+    placeholders = re.findall(r"\{\{\s*([^}\s]+)\s*\}\}", template_text)
+    for p in placeholders:
+        c = _clean_token(p)
+        if c:
+            fields.append((c, 1.0))
+
+    # headings / labels
+    for line in _tokenize_lines(template_text):
+        if ':' in line:
+            key = line.split(':', 1)[0]
+            k = _clean_token(key)
+            if k:
+                fields.append((k, 0.8))
+
+    # common labels fallback
+    for lab in COMMON_LABELS:
+        norm = re.sub(r"[^A-Za-z0-9_]+", '_', lab).strip('_')
+        if norm:
+            fields.append((norm, 0.5))
+
+    # canonicalize and dedupe keeping max confidence per canonical name
+    def _canonicalize(name: str) -> str:
+        n = name.lower()
+        if 'policy' in n:
+            return 'policy_number'
+        if 'claim' in n:
+            return 'claim_number'
+        if 'insured' in n or n == 'name':
+            return 'insured_name'
+        if 'date' in n or 'loss' in n:
+            return 'date'
+        if 'phone' in n or 'tel' in n:
+            return 'phone'
+        if 'email' in n:
+            return 'email'
+        return n
+
+    agg = {}
+    for name, conf in fields:
+        cn = _canonicalize(name)
+        if not cn:
+            continue
+        agg[cn] = max(agg.get(cn, 0.0), conf)
+
+    out = sorted(agg.items(), key=lambda x: x[1], reverse=True)
+    return out
+
+
 def _first_regex_match(pattern, text: str):
     m = pattern.search(text)
     if m:
@@ -155,10 +217,16 @@ def map_fields_from_reports(fields: List[str], reports_text: str):
                 if v:
                     value, reason, snippet = v, 'regex_policy', v
             elif 'address' in key:
-                # naive: look for lines containing street-like keywords
-                for line in lines:
-                    if re.search(r"\d+\s+\w+\s+(Street|St|Ave|Avenue|Blvd|Road|Rd)\\b", line, re.IGNORECASE):
-                        value, reason, snippet = line.strip(), 'line_address', line.strip()
+                # improved: look for lines containing street-like keywords and stitch following line(s)
+                for i, line in enumerate(lines):
+                    if re.search(r"\d+\s+\w+\s+(Street|St|Ave|Avenue|Blvd|Road|Rd|Ln|Court|Ct)\\b", line, re.IGNORECASE):
+                        addr = line.strip()
+                        # append next line if it looks like city/state/zip
+                        if i + 1 < len(lines):
+                            next_line = lines[i+1].strip()
+                            if re.search(r"\b[A-Za-z]+,?\s*[A-Za-z]{2}\b|\d{5}(-\d{4})?", next_line):
+                                addr = addr + ', ' + next_line
+                        value, reason, snippet = addr, 'line_address', addr
                         break
             else:
                 # fallback: try to extract a short phrase near a known label in text
@@ -177,15 +245,35 @@ def map_fields_from_reports(fields: List[str], reports_text: str):
                         if value:
                             break
 
-        # final trim and safety
+        # assign confidence based on rule
+        conf = 0.0
+        if reason == 'label_line':
+            conf = 0.90
+        elif reason.startswith('regex_'):
+            conf = 0.95
+        elif reason in ('regex_claim_policy', 'regex_policy'):
+            conf = 0.92
+        elif reason == 'line_address':
+            conf = 0.90
+        elif reason == 'label_colon_fallback':
+            conf = 0.70
+        elif reason == 'label_next_line_fallback':
+            conf = 0.60
+        elif reason == 'not_found':
+            conf = 0.0
+        else:
+            conf = 0.50
+
         if value:
             if len(value) > 300:
                 value = value[:300] + '...'
             mapping[f] = value
-            audit[f] = {'rule': reason, 'snippet': snippet}
+            audit[f] = {'rule': reason, 'snippet': snippet, 'confidence': round(conf, 2)}
         else:
             mapping[f] = ''
-            audit[f] = {'rule': 'not_found', 'snippet': ''}
+            audit[f] = {'rule': 'not_found', 'snippet': '', 'confidence': 0.0}
+
+    return mapping, audit
 
     return mapping, audit
 
