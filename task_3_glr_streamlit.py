@@ -149,7 +149,52 @@ def call_llm_chat(messages: List[Dict], model: str = None, timeout: int = 60) ->
     headers = None
     payload = None
 
-    # 1) Try Google Generative Language (Gemini) if key provided
+    # Prefer OpenRouter/OpenAI when available (more stable for bearer tokens), then fall back to Gemini
+    # 1) Try OpenRouter (if key)
+    if openrouter_key:
+        url = "https://api.openrouter.ai/v1/chat/completions"
+        headers = {"Authorization": f"Bearer {openrouter_key}", "Content-Type": "application/json"}
+        payload = {
+            "model": model or "gpt-4o-mini",
+            "messages": messages,
+            "temperature": 0.0,
+            "max_tokens": 1500,
+        }
+        try:
+            r = requests.post(url, headers=headers, json=payload, timeout=timeout)
+            r.raise_for_status()
+            j = r.json()
+            return j['choices'][0]['message']['content']
+        except Exception as e:
+            st.warning(f"OpenRouter request failed: {e}")
+            try:
+                print(f"OpenRouter request failed: {e}")
+            except Exception:
+                pass
+
+    # 2) Try OpenAI (if key)
+    if openai_key:
+        url = "https://api.openai.com/v1/chat/completions"
+        headers = {"Authorization": f"Bearer {openai_key}", "Content-Type": "application/json"}
+        payload = {
+            "model": model or "gpt-4o-mini",
+            "messages": messages,
+            "temperature": 0.0,
+            "max_tokens": 1500,
+        }
+        try:
+            r = requests.post(url, headers=headers, json=payload, timeout=timeout)
+            r.raise_for_status()
+            j = r.json()
+            return j['choices'][0]['message']['content']
+        except Exception as e:
+            st.warning(f"OpenAI request failed: {e}")
+            try:
+                print(f"OpenAI request failed: {e}")
+            except Exception:
+                pass
+
+    # 3) Try Google Generative Language (Gemini) if key provided
     if gemini_key:
         try:
             # Convert chat-like messages to a single prompt for text generation
@@ -173,53 +218,9 @@ def call_llm_chat(messages: List[Dict], model: str = None, timeout: int = 60) ->
             if 'candidates' in j and len(j['candidates']) > 0:
                 return j['candidates'][0].get('output', '')
         except Exception as e:
-            st.warning(f"Gemini request failed: {e}")
+            st.warning(f"Gemini request failed: {e} — check GEMINI_API_KEY and model/endpoint")
             try:
                 print(f"Gemini request failed: {e}")
-            except Exception:
-                pass
-
-    # 2) Try OpenRouter (if key)
-    if openrouter_key:
-        url = "https://api.openrouter.ai/v1/chat/completions"
-        headers = {"Authorization": f"Bearer {openrouter_key}", "Content-Type": "application/json"}
-        payload = {
-            "model": model or "gpt-4o-mini",
-            "messages": messages,
-            "temperature": 0.0,
-            "max_tokens": 1500,
-        }
-        try:
-            r = requests.post(url, headers=headers, json=payload, timeout=timeout)
-            r.raise_for_status()
-            j = r.json()
-            # Many chat APIs return choices[0].message.content
-            return j['choices'][0]['message']['content']
-        except Exception as e:
-            st.warning(f"OpenRouter request failed: {e}")
-            try:
-                print(f"OpenRouter request failed: {e}")
-            except Exception:
-                pass
-
-    if openai_key:
-        url = "https://api.openai.com/v1/chat/completions"
-        headers = {"Authorization": f"Bearer {openai_key}", "Content-Type": "application/json"}
-        payload = {
-            "model": model or "gpt-4o-mini",
-            "messages": messages,
-            "temperature": 0.0,
-            "max_tokens": 1500,
-        }
-        try:
-            r = requests.post(url, headers=headers, json=payload, timeout=timeout)
-            r.raise_for_status()
-            j = r.json()
-            return j['choices'][0]['message']['content']
-        except Exception as e:
-            st.warning(f"OpenAI request failed: {e}")
-            try:
-                print(f"OpenAI request failed: {e}")
             except Exception:
                 pass
 
