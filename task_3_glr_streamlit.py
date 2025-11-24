@@ -35,7 +35,12 @@ try:
 except Exception:
     Document = None
     HAVE_DOCX = False
-from PyPDF2 import PdfReader
+try:
+    from PyPDF2 import PdfReader
+    HAVE_PYPDF2 = True
+except Exception:
+    PdfReader = None
+    HAVE_PYPDF2 = False
 import io
 
 
@@ -314,11 +319,17 @@ def main():
     st.set_page_config(page_title="Task 3 - GLR Pipeline", layout="wide")
     st.title("Task 3 — GLR Pipeline (Insurance Template Filling)")
 
-    if not HAVE_DOCX:
+    if not HAVE_DOCX or not HAVE_PYPDF2:
+        missing = []
+        if not HAVE_DOCX:
+            missing.append('python-docx')
+        if not HAVE_PYPDF2:
+            missing.append('PyPDF2')
         st.error(
-            "Missing package `python-docx`. Install it and redeploy.\n"
-            "On Streamlit Cloud add `python-docx` to your repository `requirements.txt` or in the app's package settings.\n"
-            "Locally run: `pip install python-docx` and then `streamlit run task_3_glr_streamlit.py`."
+            "Missing packages: `" + ", ".join(missing) + "`.\n"
+            "Install them and redeploy.\n"
+            "On Streamlit Cloud add the missing packages to your repository `requirements.txt` or in the app's package settings.\n"
+            "Locally run: `pip install " + " ".join(missing) + "` and then `streamlit run task_3_glr_streamlit.py`."
         )
         return
 
