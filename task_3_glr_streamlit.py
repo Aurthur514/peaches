@@ -29,7 +29,12 @@ import requests
 from typing import List, Dict, Tuple
 
 import streamlit as st
-from docx import Document
+try:
+    from docx import Document
+    HAVE_DOCX = True
+except Exception:
+    Document = None
+    HAVE_DOCX = False
 from PyPDF2 import PdfReader
 import io
 
@@ -308,6 +313,14 @@ def fill_docx_template(doc: Document, mapping: Dict[str, str]) -> Document:
 def main():
     st.set_page_config(page_title="Task 3 - GLR Pipeline", layout="wide")
     st.title("Task 3 — GLR Pipeline (Insurance Template Filling)")
+
+    if not HAVE_DOCX:
+        st.error(
+            "Missing package `python-docx`. Install it and redeploy.\n"
+            "On Streamlit Cloud add `python-docx` to your repository `requirements.txt` or in the app's package settings.\n"
+            "Locally run: `pip install python-docx` and then `streamlit run task_3_glr_streamlit.py`."
+        )
+        return
 
     st.markdown("Upload a `.docx` template (placeholders like `{{field}}`) and one or more PDF photo reports.")
 
