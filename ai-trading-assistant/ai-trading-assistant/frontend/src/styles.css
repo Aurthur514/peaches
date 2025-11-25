@@ -1,0 +1,24 @@
+body { font-family: Arial, sans-serif; padding: 20px; }
+.app { max-width: 800px; margin: auto; }
+.signalBox { margin-top: 20px; padding: 12px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); background: #fff; }
+
+/* Floating widget */
+.floatingWidget {
+	position: fixed;
+	right: 18px;
+	bottom: 18px;
+	width: 160px;
+	background: linear-gradient(180deg,#0f172a,#0b1220);
+	color: #fff;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	z-index: 9999;
+}
+.fw-header { font-size: 12px; opacity: 0.85; margin-bottom: 6px; }
+.fw-body { display:flex; justify-content:space-between; align-items:center; }
+.fw-sig { font-weight:700; font-size:20px; }
+.fw-conf { font-size:14px; opacity:0.9; }

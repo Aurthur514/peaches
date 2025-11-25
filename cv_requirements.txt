@@ -1,0 +1,11 @@
+# Computer Vision Dependencies for Drone Image Alignment
+# Install with: pip install -r cv_requirements.txt
+
+opencv-python>=4.5.0
+numpy>=1.21.0
+pathlib2>=2.3.0
+
+# Optional: For enhanced performance and additional features
+# opencv-contrib-python>=4.5.0  # Includes SIFT and additional algorithms
+# matplotlib>=3.3.0             # For visualization and debugging
+# Pillow>=8.0.0                 # Alternative image I/O

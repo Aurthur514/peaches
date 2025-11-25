@@ -1,0 +1,19 @@
+# GPU-enabled image (example)
+# Use this as a starting point if you need onnxruntime-gpu.
+# Requires NVIDIA container runtime on host.
+
+FROM nvidia/cudagl:12.1-base-ubuntu22.04
+WORKDIR /app
+
+# Install basic system deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential libjpeg-dev zlib1g-dev tesseract-ocr poppler-utils \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY ./backend /app
+RUN python -m pip install --upgrade pip
+# Install GPU runtime of onnxruntime if desired (replace with correct package)
+RUN pip install -r requirements.txt
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

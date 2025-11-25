@@ -8,7 +8,7 @@
   "phone": "+91 9566030215",
   
   "linkedin_email": "mbharathan2000@gmail.com",
-  "linkedin_password": "YOUR_LINKEDIN_PASSWORD_HERE",
+  "linkedin_password": "Aurthur@1404",
   
   "linkedin_url": "https://www.linkedin.com/in/bharathan-m-baa54320b",
   "github_url": "https://github.com/Aurthur514/PROFILE",
@@ -89,7 +89,7 @@
   "_notes": {
     "min_match_score": "0.0-1.0 where 0.3 means 30% skill match required. Lower = more applications, Higher = more selective",
     "skills": "List all your technical skills. Used for matching against job descriptions",
-    "gemini_key": "Get FREE key from https://makersuite.google.com/app/apikey - no credit card needed",
+    "gemini_key": "AIzaSyBAFDRLsFY_si_C_dapAqcNYfYsoAWz7PY",
     "job_searches": "Add more search queries with different keywords and locations",
     "dry_run": "Always test with --dry-run flag first to see what agent will do"
   }

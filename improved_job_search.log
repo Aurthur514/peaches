@@ -1,0 +1,102 @@
+2025-11-15 16:04:29,494 - improved_real_job_search_engine - INFO - Chrome driver initialized successfully
+2025-11-15 16:04:29,497 - improved_real_job_search_engine - INFO - === STARTING IMPROVED REAL JOB SEARCH ===
+2025-11-15 16:04:29,497 - improved_real_job_search_engine - INFO - Keywords: data analyst, Location: chennai
+2025-11-15 16:04:29,498 - improved_real_job_search_engine - INFO - 
+--- Searching Naukri ---
+2025-11-15 16:04:29,499 - improved_real_job_search_engine - INFO - Starting Naukri search for: data analyst in chennai
+2025-11-15 16:04:29,500 - improved_real_job_search_engine - INFO - Navigating to: https://www.naukri.com/data-analyst-jobs-in-chennai
+2025-11-15 16:04:37,157 - improved_real_job_search_engine - INFO - Found 20 jobs using selector: [data-job-id]
+2025-11-15 16:04:37,326 - improved_real_job_search_engine - INFO - Extracted Naukri job 1: Data Analyst at Company 1
+2025-11-15 16:04:37,449 - improved_real_job_search_engine - INFO - Extracted Naukri job 2: Data Analyst at Company 2
+2025-11-15 16:04:37,637 - improved_real_job_search_engine - INFO - Extracted Naukri job 3: Data Analyst at Company 3
+2025-11-15 16:04:37,811 - improved_real_job_search_engine - INFO - Extracted Naukri job 4: Data Analyst at Company 4
+2025-11-15 16:04:38,050 - improved_real_job_search_engine - INFO - Extracted Naukri job 5: Data Analyst at Company 5
+2025-11-15 16:04:38,252 - improved_real_job_search_engine - INFO - Extracted Naukri job 6: Data Analyst at Company 6
+2025-11-15 16:04:38,441 - improved_real_job_search_engine - INFO - Extracted Naukri job 7: Data Analyst at Company 7
+2025-11-15 16:04:38,628 - improved_real_job_search_engine - INFO - Extracted Naukri job 8: Tcs Hiring Alert - Data Analyst at Company 8
+2025-11-15 16:04:38,857 - improved_real_job_search_engine - INFO - Extracted Naukri job 9: Data Analyst L4 at Company 9
+2025-11-15 16:04:39,006 - improved_real_job_search_engine - INFO - Extracted Naukri job 10: Data Analyst L3 at Company 10
+2025-11-15 16:04:39,007 - improved_real_job_search_engine - INFO - Successfully extracted 10 jobs from Naukri
+2025-11-15 16:04:44,013 - improved_real_job_search_engine - INFO - 
+--- Searching Indeed ---
+2025-11-15 16:04:44,014 - improved_real_job_search_engine - INFO - Starting Indeed search for: data analyst in chennai
+2025-11-15 16:04:44,014 - improved_real_job_search_engine - INFO - Navigating to: https://in.indeed.com/jobs?q=data+analyst&l=chennai
+2025-11-15 16:04:51,727 - improved_real_job_search_engine - INFO - Found 16 jobs using selector: .job_seen_beacon
+2025-11-15 16:04:52,240 - improved_real_job_search_engine - INFO - Extracted Indeed job 1: SEO Analyst at Capminds Technology
+2025-11-15 16:04:52,448 - improved_real_job_search_engine - INFO - Extracted Indeed job 2: Lead Business Analyst - C12 - CHENNAI at Citi
+2025-11-15 16:04:53,171 - improved_real_job_search_engine - INFO - Extracted Indeed job 3: Data Analyst at McRennett
+2025-11-15 16:04:53,418 - improved_real_job_search_engine - INFO - Extracted Indeed job 4: Data Research Analyst at Centre point soft tech pvt ltd
+2025-11-15 16:04:53,619 - improved_real_job_search_engine - INFO - Extracted Indeed job 5: Data Analyst (SQL,HDFS, Hive) at RiskInsight Consulting Pvt Ltd
+2025-11-15 16:04:53,809 - improved_real_job_search_engine - INFO - Extracted Indeed job 6: Data Analyst at Moving walls India Pvt ltd
+2025-11-15 16:04:53,955 - improved_real_job_search_engine - INFO - Extracted Indeed job 7: Junior Data Analyst at Achutha Associates
+2025-11-15 16:04:54,103 - improved_real_job_search_engine - INFO - Extracted Indeed job 8: Power BI (DAX & Data Modeling) Developer at Yoda Technologies Pty Ltd
+2025-11-15 16:04:54,104 - improved_real_job_search_engine - INFO - Successfully extracted 8 jobs from Indeed
+2025-11-15 16:04:58,192 - improved_real_job_search_engine - INFO - 
+--- Searching FreshersWorld ---
+2025-11-15 16:04:58,193 - improved_real_job_search_engine - INFO - Starting FreshersWorld search for: data analyst in chennai
+2025-11-15 16:04:58,193 - improved_real_job_search_engine - INFO - Navigating to: https://www.freshersworld.com/jobs/jobsearch/data-analyst-jobs-in-chennai
+2025-11-15 16:05:12,105 - improved_real_job_search_engine - INFO - Found 20 jobs using selector: .job-container
+2025-11-15 16:05:12,211 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 1: For a Client of TeamLease Digital
+2025-11-15 16:05:12,284 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 2: RNDMFG
+2025-11-15 16:05:12,349 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 3: MTH INFOTECH PVT LTD
+2025-11-15 16:05:12,429 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 4: MTH INFOTECH PVT LTD
+2025-11-15 16:05:12,499 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 5: Bank DSA
+2025-11-15 16:05:12,570 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 6: Bank DSA
+2025-11-15 16:05:12,571 - improved_real_job_search_engine - INFO - Successfully extracted 6 jobs from FreshersWorld
+2025-11-15 16:05:19,203 - improved_real_job_search_engine - INFO - Results saved to: improved_job_search_results_20251115_160519.json
+2025-11-15 16:05:22,887 - improved_real_job_search_engine - INFO - Browser closed successfully
+2025-11-15 16:05:26,942 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001D61A1216D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/f881ce5d2593f09347f51c9339266be9
+2025-11-15 16:05:31,018 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001D61A121950>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/f881ce5d2593f09347f51c9339266be9
+2025-11-15 16:05:35,061 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001D619CFDF30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/f881ce5d2593f09347f51c9339266be9
+2025-11-15 16:05:43,182 - improved_real_job_search_engine - INFO - Browser closed successfully
+2025-11-15 16:12:42,951 - improved_real_job_search_engine - INFO - Chrome driver initialized successfully
+2025-11-15 16:12:43,956 - improved_real_job_search_engine - INFO - === STARTING IMPROVED REAL JOB SEARCH ===
+2025-11-15 16:12:43,958 - improved_real_job_search_engine - INFO - Keywords: data analyst, Location: chennai
+2025-11-15 16:12:43,960 - improved_real_job_search_engine - INFO - 
+--- Searching Naukri ---
+2025-11-15 16:12:43,962 - improved_real_job_search_engine - INFO - Starting Naukri search for: data analyst in chennai
+2025-11-15 16:12:43,962 - improved_real_job_search_engine - INFO - Navigating to: https://www.naukri.com/data-analyst-jobs-in-chennai
+2025-11-15 16:12:50,493 - improved_real_job_search_engine - INFO - Found 20 jobs using selector: [data-job-id]
+2025-11-15 16:12:50,626 - improved_real_job_search_engine - INFO - Extracted Naukri job 1: Data Analyst at Company 1
+2025-11-15 16:12:50,720 - improved_real_job_search_engine - INFO - Extracted Naukri job 2: Data Analyst at Company 2
+2025-11-15 16:12:50,836 - improved_real_job_search_engine - INFO - Extracted Naukri job 3: Data Analyst at Company 3
+2025-11-15 16:12:50,930 - improved_real_job_search_engine - INFO - Extracted Naukri job 4: Tcs Hiring Alert - Data Analyst at Company 4
+2025-11-15 16:12:51,029 - improved_real_job_search_engine - INFO - Extracted Naukri job 5: Data Analyst - Python Programming at Company 5
+2025-11-15 16:12:51,123 - improved_real_job_search_engine - INFO - Extracted Naukri job 6: Exciting Job opportunity For "Data Analyst" at well known MNC at Company 6
+2025-11-15 16:12:51,215 - improved_real_job_search_engine - INFO - Extracted Naukri job 7: Data Analyst at Company 7
+2025-11-15 16:12:51,308 - improved_real_job_search_engine - INFO - Extracted Naukri job 8: Data Analyst at Company 8
+2025-11-15 16:12:51,399 - improved_real_job_search_engine - INFO - Extracted Naukri job 9: Data Analyst L4 at Company 9
+2025-11-15 16:12:51,493 - improved_real_job_search_engine - INFO - Extracted Naukri job 10: Data Analyst at Company 10
+2025-11-15 16:12:51,494 - improved_real_job_search_engine - INFO - Successfully extracted 10 jobs from Naukri
+2025-11-15 16:12:58,072 - improved_real_job_search_engine - INFO - 
+--- Searching Indeed ---
+2025-11-15 16:12:58,072 - improved_real_job_search_engine - INFO - Starting Indeed search for: data analyst in chennai
+2025-11-15 16:12:58,072 - improved_real_job_search_engine - INFO - Navigating to: https://in.indeed.com/jobs?q=data+analyst&l=chennai
+2025-11-15 16:13:11,592 - improved_real_job_search_engine - INFO - Found 16 jobs using selector: .job_seen_beacon
+2025-11-15 16:13:11,691 - improved_real_job_search_engine - INFO - Extracted Indeed job 1: SEO Analyst at Capminds Technology
+2025-11-15 16:13:11,774 - improved_real_job_search_engine - INFO - Extracted Indeed job 2: Lead Business Analyst - C12 - CHENNAI at Citi
+2025-11-15 16:13:11,851 - improved_real_job_search_engine - INFO - Extracted Indeed job 3: Data Analyst at McRennett
+2025-11-15 16:13:11,920 - improved_real_job_search_engine - INFO - Extracted Indeed job 4: Data Research Analyst at Centre point soft tech pvt ltd
+2025-11-15 16:13:12,011 - improved_real_job_search_engine - INFO - Extracted Indeed job 5: Data Analyst (SQL,HDFS, Hive) at RiskInsight Consulting Pvt Ltd
+2025-11-15 16:13:12,082 - improved_real_job_search_engine - INFO - Extracted Indeed job 6: Data Analyst at Moving walls India Pvt ltd
+2025-11-15 16:13:12,151 - improved_real_job_search_engine - INFO - Extracted Indeed job 7: Junior Data Analyst at Achutha Associates
+2025-11-15 16:13:12,219 - improved_real_job_search_engine - INFO - Extracted Indeed job 8: Power BI (DAX & Data Modeling) Developer at Yoda Technologies Pty Ltd
+2025-11-15 16:13:12,219 - improved_real_job_search_engine - INFO - Successfully extracted 8 jobs from Indeed
+2025-11-15 16:13:18,762 - improved_real_job_search_engine - INFO - 
+--- Searching FreshersWorld ---
+2025-11-15 16:13:18,763 - improved_real_job_search_engine - INFO - Starting FreshersWorld search for: data analyst in chennai
+2025-11-15 16:13:18,763 - improved_real_job_search_engine - INFO - Navigating to: https://www.freshersworld.com/jobs/jobsearch/data-analyst-jobs-in-chennai
+2025-11-15 16:13:39,640 - improved_real_job_search_engine - INFO - Found 20 jobs using selector: .job-container
+2025-11-15 16:13:39,724 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 1: For a Client of TeamLease Digital
+2025-11-15 16:13:39,793 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 2: RNDMFG
+2025-11-15 16:13:39,860 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 3: MTH INFOTECH PVT LTD
+2025-11-15 16:13:39,920 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 4: MTH INFOTECH PVT LTD
+2025-11-15 16:13:39,978 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 5: Bank DSA
+2025-11-15 16:13:40,038 - improved_real_job_search_engine - INFO - Extracted FreshersWorld job 6: Bank DSA
+2025-11-15 16:13:40,038 - improved_real_job_search_engine - INFO - Successfully extracted 6 jobs from FreshersWorld
+2025-11-15 16:13:45,592 - improved_real_job_search_engine - INFO - Results saved to: improved_job_search_results_20251115_161345.json
+2025-11-15 16:13:47,878 - improved_real_job_search_engine - INFO - Browser closed successfully
+2025-11-15 16:13:51,912 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029F74D1A0D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/e7e96dfa4dc7b28595eeb8b0294f28cb
+2025-11-15 16:13:55,963 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029F74B0AC10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/e7e96dfa4dc7b28595eeb8b0294f28cb
+2025-11-15 16:14:00,001 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000029F7507C510>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/e7e96dfa4dc7b28595eeb8b0294f28cb
+2025-11-15 16:14:08,078 - improved_real_job_search_engine - INFO - Browser closed successfully

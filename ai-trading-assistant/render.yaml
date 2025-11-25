@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: ai-trading-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    plan: starter
+    region: oregon
+    envVars:
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: ENABLE_EASYOCR
+        value: "0"
+
+  - type: static
+    name: ai-trading-frontend
+    env: static
+    buildCommand: cd frontend && npm ci && npm run build
+    publishPath: frontend/dist
+    plan: starter
+    region: oregon
+    envVars:
+      - key: BACKEND_URL
+        sync: false
